@@ -64,18 +64,31 @@
         <!--Whiteborad-->
         <scene sceneID="0mo-uD-WBy">
             <objects>
-                <viewController id="qkn-IZ-J8W" sceneMemberID="viewController">
+                <viewController id="qkn-IZ-J8W" customClass="WhiteboardViewController" customModule="KidsFit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Tl-iu-S3R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-T8-sWK">
+                                <rect key="frame" x="20" y="93" width="374" height="216"/>
+                            </datePicker>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dvb-YP-AqY"/>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstItem="dvb-YP-AqY" firstAttribute="trailing" secondItem="ekb-T8-sWK" secondAttribute="trailing" constant="20" id="5Sw-Af-6KN"/>
+                            <constraint firstItem="ekb-T8-sWK" firstAttribute="leading" secondItem="dvb-YP-AqY" secondAttribute="leading" constant="20" id="kKx-Bs-eFL"/>
+                            <constraint firstItem="ekb-T8-sWK" firstAttribute="top" secondItem="dvb-YP-AqY" secondAttribute="top" constant="5" id="sEU-pk-puC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Whiteborad" id="uAQ-ac-boy"/>
+                    <connections>
+                        <outlet property="datePicker" destination="ekb-T8-sWK" id="7xo-Ju-AMK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fp8-bl-iTw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="1515"/>
+            <point key="canvasLocation" x="463.768115942029" y="1514.7321428571429"/>
         </scene>
         <!--Item-->
         <scene sceneID="CD0-FT-9ll">
