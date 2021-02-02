@@ -8,6 +8,9 @@ target 'KidsFit' do
   # Pods for KidsFit
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
+  
+  pod 'SPAlert'
 
   target 'KidsFitTests' do
     inherit! :search_paths

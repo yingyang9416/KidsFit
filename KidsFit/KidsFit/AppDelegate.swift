@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 
+let gymId = "gymid11223"
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
