@@ -17,8 +17,13 @@ class WODWorkoutTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func bind(title: String, body: String) {
-        titleLabel.text = title
+    func bind(title: String?, body: String) {
+        if let title = title {
+            titleLabel.isHidden = false
+            titleLabel.text = title
+        } else {  // no title
+            titleLabel.isHidden = true
+        }
         bodyLabel.text = body
     }
     

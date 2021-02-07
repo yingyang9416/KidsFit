@@ -20,28 +20,30 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c81-2x-FHz">
                         <rect key="frame" x="12" y="18" width="436" height="229"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout of the day title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-W9-ePO">
-                                <rect key="frame" x="15" y="15" width="366" height="27.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Workout of the day title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTF-H3-Of8">
-                                <rect key="frame" x="15" y="50.5" width="366" height="160.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-Vk-q7y">
+                                <rect key="frame" x="8" y="14" width="408" height="201"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout of the day title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-W9-ePO">
+                                        <rect key="frame" x="0.0" y="0.0" width="408" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Workout of the day title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTF-H3-Of8">
+                                        <rect key="frame" x="0.0" y="27.5" width="408" height="173.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rp1-W9-ePO" firstAttribute="top" secondItem="c81-2x-FHz" secondAttribute="top" constant="15" id="0ic-4e-5Y0"/>
-                            <constraint firstAttribute="trailing" secondItem="uTF-H3-Of8" secondAttribute="trailing" constant="55" id="Lvy-DP-gDl"/>
-                            <constraint firstItem="uTF-H3-Of8" firstAttribute="top" secondItem="rp1-W9-ePO" secondAttribute="bottom" constant="8" id="QPr-0D-Hxs"/>
-                            <constraint firstItem="rp1-W9-ePO" firstAttribute="leading" secondItem="c81-2x-FHz" secondAttribute="leading" constant="15" id="UN1-du-Zki"/>
-                            <constraint firstItem="uTF-H3-Of8" firstAttribute="leading" secondItem="c81-2x-FHz" secondAttribute="leading" constant="15" id="UYv-1J-w08"/>
-                            <constraint firstAttribute="trailing" secondItem="rp1-W9-ePO" secondAttribute="trailing" constant="55" id="fKR-gP-FMA"/>
-                            <constraint firstAttribute="bottom" secondItem="uTF-H3-Of8" secondAttribute="bottom" constant="18" id="l2n-d4-SLu"/>
+                            <constraint firstAttribute="bottom" secondItem="u9u-Vk-q7y" secondAttribute="bottom" constant="14" id="2JK-hn-QGP"/>
+                            <constraint firstItem="u9u-Vk-q7y" firstAttribute="leading" secondItem="c81-2x-FHz" secondAttribute="leading" constant="8" id="5BO-Xi-qmj"/>
+                            <constraint firstItem="u9u-Vk-q7y" firstAttribute="top" secondItem="c81-2x-FHz" secondAttribute="top" constant="14" id="CYQ-i9-pvZ"/>
+                            <constraint firstAttribute="trailing" secondItem="u9u-Vk-q7y" secondAttribute="trailing" constant="20" id="oon-eq-tNm"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -8,17 +8,23 @@
 import UIKit
 import SPAlert
 
+let currentGymId = "gymid11223"
+
 class WhiteboardViewController: UIViewController {
 
-    @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet weak var whiteboardTableView: UITableView!
+    
+    var dateShown: Date = Date()
+    var dateSelectedFromPopover: Date?
+    var wod: WOD?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightBarbutton = UIBarButtonItem(title: "Right", style: .plain, target: self, action: #selector(rightBarbuttonTapped))
+        let dateString = DateFormatter().dateString(from: dateShown, format: .readableMonthAndDate)
+        let rightBarbutton = UIBarButtonItem(title: dateString, style: .plain, target: self, action: #selector(rightBarbuttonTapped))
         self.navigationItem.rightBarButtonItem  = rightBarbutton
-        setDatePicker()
         setupTableview()
+        loadContent(for: dateShown, gymId: currentGymId)
     }
     
     func setupTableview() {
@@ -33,12 +39,6 @@ class WhiteboardViewController: UIViewController {
         whiteboardTableView.tableHeaderView = headerImageView
 
     }
-    
-    func setDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .compact
-        datePicker.addTarget(self, action: #selector(datePickerEditingDidEnd), for: .editingDidEnd)
-    }
 
     func addNavBarImage() {
         let navController = navigationController!
@@ -52,24 +52,24 @@ class WhiteboardViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
-    
-    @objc func datePickerEditingDidEnd() {
-        print("date is \(datePicker.date)")
-    }
-    
-    @objc func rightBarbuttonTapped() {
-        let datepicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-    }
-    
-    @IBAction func fetch(_ sender: Any) {
         
-        FirebaseDatabaseHelper.shared.fetchWOD(date: datePicker.date, gymId: "gymid11223") { (wod) in
-            print("sucess!")
-            print(wod.workout)
+    @objc func rightBarbuttonTapped() {
+        let datePickerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DatePickerViewController")
+        datePickerViewController.modalPresentationStyle = .popover
+        datePickerViewController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        datePickerViewController.popoverPresentationController?.delegate = self
+        self.present(datePickerViewController, animated: true)
+    }
+    
+    func loadContent(for date: Date, gymId: String) {
+        let dateStringToShow = DateFormatter().dateString(from: date, format: .readableMonthAndDate)
+        self.navigationItem.rightBarButtonItem?.title = dateStringToShow
+        FirebaseDatabaseHelper.shared.fetchWOD(date: date, gymId: currentGymId) { (wod) in
+            self.wod = wod
+            self.whiteboardTableView.reloadData()
         } onFailure: { (error) in
-            
+            SPAlert.present(message: "Error getting the content", haptic: .error)
         }
-
 
     }
     
@@ -95,7 +95,11 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeue(cell: WODWorkoutTableViewCell.self, indexPath: indexPath)
-            cell.bind(title: "Workout of the day", body: "push up 100\npull ups 100\nsquats 200")
+            if let wod = self.wod {
+                cell.bind(title: wod.title, body: wod.workout)
+            } else {
+                cell.bind(title: "No workout found", body: "")
+            }
             return cell
         default:
             let cell = tableView.dequeue(cell: WODCommentTableViewCell.self, indexPath: indexPath)
@@ -106,5 +110,16 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 
+}
+
+extension WhiteboardViewController: UIPopoverPresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        guard let dateSelected = dateSelectedFromPopover else { return }
+        
+        if DateFormatter().dateString(from: dateShown, format: .readableMonthAndDate) != DateFormatter().dateString(from: dateSelected, format: .readableMonthAndDate) {
+            dateShown = dateSelected
+            loadContent(for: dateShown, gymId: currentGymId)
+        }
+    }
 }
 
