@@ -41,9 +41,20 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMm-DK-QNd">
                                 <rect key="frame" x="74" y="232" width="277" height="26"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atZ-m7-6D9">
+                                        <rect key="frame" x="0.0" y="0.0" width="277" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="5et-Ys-XRY"/>
+                                    <constraint firstItem="atZ-m7-6D9" firstAttribute="top" secondItem="sMm-DK-QNd" secondAttribute="top" id="60j-Ju-atF"/>
+                                    <constraint firstItem="atZ-m7-6D9" firstAttribute="leading" secondItem="sMm-DK-QNd" secondAttribute="leading" id="DJ2-nm-v3g"/>
+                                    <constraint firstAttribute="bottom" secondItem="atZ-m7-6D9" secondAttribute="bottom" id="dow-iw-M3Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="atZ-m7-6D9" secondAttribute="trailing" id="s2B-P6-88R"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5r-Ut-Ejp" userLabel="border view">
@@ -84,6 +95,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentLabel" destination="fJ5-PW-ZpU" id="0uS-6o-YDZ"/>
+                <outlet property="dateLabel" destination="atZ-m7-6D9" id="WjO-gM-Azz"/>
                 <outlet property="profileImageView" destination="GhI-c1-Irv" id="WZ4-1G-f3A"/>
                 <outlet property="titleLabel" destination="fPU-yy-4NA" id="SbF-gn-3Kt"/>
             </connections>
@@ -97,9 +109,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

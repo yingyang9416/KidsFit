@@ -22,6 +22,7 @@ class FirebaseDatabaseHelper: NSObject {
     private lazy var databaseRef = Database.database().reference()
     private lazy var userRef = databaseRef.child("User")
     private lazy var wodRef = databaseRef.child("WOD")
+    private lazy var wodCommentRef = databaseRef.child("WODComment")
 
 
     func insertUser(uid:String, userDictionary: [String: Any], onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()){
@@ -34,10 +35,24 @@ class FirebaseDatabaseHelper: NSObject {
         }
     }
     
-    func test() {
-        let e = wodRef.child(currentGymId).queryOrderedByKey()
+    func fetchUser(uid: String, onSuccess: @escaping (User?)->(), onFailure: @escaping (Error)->()) {
+        userRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    let user = try JSONDecoder().decode(User?.self, from: data)
+                    user?.userId = uid
+                    onSuccess(user)
+                } catch {
+                    print("errors decode the data")
+                }
+            } else { // found nil value
+                onSuccess(nil)
+            }
+        }
         
     }
+    
     
 //    class func getFeedsWith(lastKey: String?, completion: @escaping ((Bool, [FeedsModel]?) -> Void)) {
 //            let feedsReference = Database.database().reference().child("YOUR FEEDS' NODE")
@@ -83,8 +98,47 @@ class FirebaseDatabaseHelper: NSObject {
             } else { // found nil value
                 onSuccess(nil)
             }
-            
-            
+        }
+    }
+    
+    func fetchWODComments(date: Date, gymId: String, onSuccess: @escaping ([WODComment])->(), onFailure: @escaping (Error)->()) {
+        var comments = [WODComment?]()
+        let wodId = DateFormatter().timeString(from: date, format: .dateIdFormat)
+        wodRef.child(gymId).child(wodId).child("Comments").observeSingleEvent(of: .value) { (snapshot) in
+            let group = DispatchGroup()
+            if let values = snapshot.value as? [String: Any]{
+                for v in values {
+                    group.enter()
+                    self.fetchWODComment(commentId: v.key) { (comment) in
+                        comments.append(comment)
+                        group.leave()
+                    } onFailure: { (_) in
+                        print("error fetching comment")
+                        group.leave()
+                    }
+
+                }
+            }
+            group.notify(queue: .global(qos: .userInitiated)) {
+                let filtered = comments.compactMap { $0 }
+                onSuccess(filtered)
+            }
+        }
+    }
+    
+    func fetchWODComment(commentId: String, onSuccess: @escaping (WODComment?)->(), onFailure: @escaping (Error)->()) {
+        wodCommentRef.child(commentId).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    let comment = try JSONDecoder().decode(WODComment?.self, from: data)
+                    onSuccess(comment)
+                } catch {
+                    print("errors decode the comment data")
+                }
+            } else { // found nil value
+                onSuccess(nil)
+            }
         }
     }
 
@@ -94,6 +148,33 @@ class FirebaseDatabaseHelper: NSObject {
         let dateId = DateFormatter().dateString(from: date, format: .dateIdFormat)
         wodRef.child(gymId).child(dateId).updateChildValues(valueDictionary) { (error, dbRef) in
             if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    func insertWODComment(gymId: String, wodId: String, comment: WODComment, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
+        guard let key = wodCommentRef.childByAutoId().key else {
+            onFailure(AppError.otherError)
+            return
+        }
+        let group = DispatchGroup()
+        var finalError: Error?
+        group.enter()
+        wodCommentRef.child(key).updateChildValues(comment.firebaseDictionary) { (error, _) in
+            finalError = error == nil ? finalError : error
+            group.leave()
+        }
+        group.enter()
+        wodRef.child(gymId).child(wodId).child("Comments").updateChildValues([key: "CommentId"]) { (error, _) in
+            finalError = error == nil ? finalError : error
+            group.leave()
+        }
+        
+        group.notify(queue: .global(qos: .userInitiated)) {
+            if let error = finalError {
                 onFailure(error)
             } else {
                 onSuccess()

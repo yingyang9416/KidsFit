@@ -18,13 +18,21 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        firstNameField.placeholder = "First Name"
+        lastNameField.placeholder = "Last Name"
+        emailField.placeholder = "Email"
+        
     }
     
     @IBAction func signup(_ sender: Any) {
         signupUser()
     }
+    
+    @IBAction func currentUser(_ sender: Any) {
+        let user = Auth.auth().currentUser
+        print("currnt user :\(user?.uid)")
+    }
+    
     
     func signupUser() {
 //        FirebaseAuth.shared.signupUser(email: "yingyang9416@gmail.com", password: "Yy19940106") {

@@ -36,6 +36,29 @@
 		7BB3DE6D25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE6C25CE2BE10099CC7E /* DatePickerViewController.swift */; };
 		7BB3DE6E25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE6C25CE2BE10099CC7E /* DatePickerViewController.swift */; };
 		7BB3DE6F25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE6C25CE2BE10099CC7E /* DatePickerViewController.swift */; };
+		7BB3DE7425CFA1540099CC7E /* UserEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE7325CFA1540099CC7E /* UserEntranceViewController.swift */; };
+		7BB3DE7925CFADF50099CC7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE7825CFADF50099CC7E /* User.swift */; };
+		7BB3DE7A25CFADF50099CC7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE7825CFADF50099CC7E /* User.swift */; };
+		7BB3DE7B25CFADF50099CC7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE7825CFADF50099CC7E /* User.swift */; };
+		7BB3DE8325CFC5BD0099CC7E /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8225CFC5BD0099CC7E /* MeViewController.swift */; };
+		7BB3DE8425CFC5BD0099CC7E /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8225CFC5BD0099CC7E /* MeViewController.swift */; };
+		7BB3DE8525CFC5BD0099CC7E /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8225CFC5BD0099CC7E /* MeViewController.swift */; };
+		7BB3DE8A25D0ED580099CC7E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8925D0ED580099CC7E /* UIViewControllerExtension.swift */; };
+		7BB3DE8B25D0ED590099CC7E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8925D0ED580099CC7E /* UIViewControllerExtension.swift */; };
+		7BB3DE8C25D0ED590099CC7E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DE8925D0ED580099CC7E /* UIViewControllerExtension.swift */; };
+		7BB3DEA725D38F2B0099CC7E /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEA625D38F2B0099CC7E /* UIViewExtensions.swift */; };
+		7BB3DEAC25D3B1F70099CC7E /* FirebaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEAB25D3B1F70099CC7E /* FirebaseObject.swift */; };
+		7BB3DEAD25D3B1F70099CC7E /* FirebaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEAB25D3B1F70099CC7E /* FirebaseObject.swift */; };
+		7BB3DEAE25D3B1F70099CC7E /* FirebaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEAB25D3B1F70099CC7E /* FirebaseObject.swift */; };
+		7BB3DEB325D3B3810099CC7E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB225D3B3810099CC7E /* Comment.swift */; };
+		7BB3DEB425D3B3810099CC7E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB225D3B3810099CC7E /* Comment.swift */; };
+		7BB3DEB525D3B3810099CC7E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB225D3B3810099CC7E /* Comment.swift */; };
+		7BB3DEBA2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */; };
+		7BB3DEBB2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */; };
+		7BB3DEBC2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */; };
+		7BB3DEC12603EFD40099CC7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEC02603EFD40099CC7E /* LoginViewController.swift */; };
+		7BB3DEC22603EFD40099CC7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEC02603EFD40099CC7E /* LoginViewController.swift */; };
+		7BB3DEC32603EFD40099CC7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEC02603EFD40099CC7E /* LoginViewController.swift */; };
 		89E6CBDFEC1F595B56E9ABC2 /* Pods_KidsFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45A7510120F04E48198594 /* Pods_KidsFit.framework */; };
 		8A5A8693C439E5F775394B92 /* Pods_KidsFit_KidsFitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9955FBC87D509B63F610E8F /* Pods_KidsFit_KidsFitUITests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +114,15 @@
 		7BB3DE6025CBB4D50099CC7E /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		7BB3DE6525CE24930099CC7E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		7BB3DE6C25CE2BE10099CC7E /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		7BB3DE7325CFA1540099CC7E /* UserEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntranceViewController.swift; sourceTree = "<group>"; };
+		7BB3DE7825CFADF50099CC7E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7BB3DE8225CFC5BD0099CC7E /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		7BB3DE8925D0ED580099CC7E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		7BB3DEA625D38F2B0099CC7E /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		7BB3DEAB25D3B1F70099CC7E /* FirebaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObject.swift; sourceTree = "<group>"; };
+		7BB3DEB225D3B3810099CC7E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultsExtension.swift; sourceTree = "<group>"; };
+		7BB3DEC02603EFD40099CC7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A9955FBC87D509B63F610E8F /* Pods_KidsFit_KidsFitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit_KidsFitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB45A7510120F04E48198594 /* Pods_KidsFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D564FCEE91BB775E29B6FD00 /* Pods-KidsFit-KidsFitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.debug.xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,7 +212,10 @@
 				7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */,
 				7BB3DD4225C5E92A0099CC7E /* WhiteboardViewController.swift */,
 				7BB3DDBF25C635470099CC7E /* SignupViewController.swift */,
+				7BB3DEC02603EFD40099CC7E /* LoginViewController.swift */,
 				7BB3DE6C25CE2BE10099CC7E /* DatePickerViewController.swift */,
+				7BB3DE7325CFA1540099CC7E /* UserEntranceViewController.swift */,
+				7BB3DE8225CFC5BD0099CC7E /* MeViewController.swift */,
 				7BB3DE6025CBB4D50099CC7E /* CommunityViewController.swift */,
 				7BB3DE3125C74C730099CC7E /* Extensions */,
 				7BB3DDDB25C6694B0099CC7E /* Services */,
@@ -229,6 +264,9 @@
 				7BB3DE3225C74C910099CC7E /* DateFormatterExtension.swift */,
 				7BB3DE4625C8A54B0099CC7E /* UITableViewCellExtenstion.swift */,
 				7BB3DE4B25C8A6520099CC7E /* UITableViewExtenstion.swift */,
+				7BB3DE8925D0ED580099CC7E /* UIViewControllerExtension.swift */,
+				7BB3DEA625D38F2B0099CC7E /* UIViewExtensions.swift */,
+				7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,6 +286,9 @@
 			isa = PBXGroup;
 			children = (
 				7BB3DE5B25C8F07E0099CC7E /* WOD.swift */,
+				7BB3DE7825CFADF50099CC7E /* User.swift */,
+				7BB3DEB225D3B3810099CC7E /* Comment.swift */,
+				7BB3DEAB25D3B1F70099CC7E /* FirebaseObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -494,19 +535,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB3DE8325CFC5BD0099CC7E /* MeViewController.swift in Sources */,
 				7BB3DE3E25C8A4F00099CC7E /* WODWorkoutTableViewCell.swift in Sources */,
 				7BB3DD4325C5E92A0099CC7E /* WhiteboardViewController.swift in Sources */,
+				7BB3DE7425CFA1540099CC7E /* UserEntranceViewController.swift in Sources */,
 				7BB3DD3F25C5E92A0099CC7E /* AppDelegate.swift in Sources */,
+				7BB3DEAC25D3B1F70099CC7E /* FirebaseObject.swift in Sources */,
 				7BB3DE3325C74C910099CC7E /* DateFormatterExtension.swift in Sources */,
+				7BB3DEA725D38F2B0099CC7E /* UIViewExtensions.swift in Sources */,
 				7BB3DE4C25C8A6520099CC7E /* UITableViewExtenstion.swift in Sources */,
+				7BB3DEB325D3B3810099CC7E /* Comment.swift in Sources */,
 				7BB3DDDD25C66A3B0099CC7E /* FirebaseAuth.swift in Sources */,
+				7BB3DE7925CFADF50099CC7E /* User.swift in Sources */,
+				7BB3DEC12603EFD40099CC7E /* LoginViewController.swift in Sources */,
 				7BB3DE6625CE24930099CC7E /* AppError.swift in Sources */,
+				7BB3DEBA2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */,
 				7BB3DE5C25C8F07E0099CC7E /* WOD.swift in Sources */,
 				7BB3DE5225C8AD270099CC7E /* WODCommentTableViewCell.swift in Sources */,
 				7BB3DE0D25C687180099CC7E /* FirebaseDatabaseHelper.swift in Sources */,
 				7BB3DE6125CBB4D50099CC7E /* CommunityViewController.swift in Sources */,
 				7BB3DE6D25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */,
 				7BB3DDC025C635470099CC7E /* SignupViewController.swift in Sources */,
+				7BB3DE8A25D0ED580099CC7E /* UIViewControllerExtension.swift in Sources */,
 				7BB3DD4125C5E92A0099CC7E /* SceneDelegate.swift in Sources */,
 				7BB3DE4725C8A54B0099CC7E /* UITableViewCellExtenstion.swift in Sources */,
 			);
@@ -516,8 +566,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB3DE8425CFC5BD0099CC7E /* MeViewController.swift in Sources */,
+				7BB3DE7A25CFADF50099CC7E /* User.swift in Sources */,
+				7BB3DE8B25D0ED590099CC7E /* UIViewControllerExtension.swift in Sources */,
+				7BB3DEB425D3B3810099CC7E /* Comment.swift in Sources */,
+				7BB3DEBB2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */,
 				7BB3DE6725CE24930099CC7E /* AppError.swift in Sources */,
 				7BB3DD5625C5E92C0099CC7E /* KidsFitTests.swift in Sources */,
+				7BB3DEAD25D3B1F70099CC7E /* FirebaseObject.swift in Sources */,
+				7BB3DEC22603EFD40099CC7E /* LoginViewController.swift in Sources */,
 				7BB3DE6E25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,8 +583,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB3DE8525CFC5BD0099CC7E /* MeViewController.swift in Sources */,
+				7BB3DE7B25CFADF50099CC7E /* User.swift in Sources */,
+				7BB3DE8C25D0ED590099CC7E /* UIViewControllerExtension.swift in Sources */,
+				7BB3DEB525D3B3810099CC7E /* Comment.swift in Sources */,
+				7BB3DEBC2602F1670099CC7E /* UserdefaultsExtension.swift in Sources */,
 				7BB3DE6825CE24930099CC7E /* AppError.swift in Sources */,
 				7BB3DD6125C5E92C0099CC7E /* KidsFitUITests.swift in Sources */,
+				7BB3DEAE25D3B1F70099CC7E /* FirebaseObject.swift in Sources */,
+				7BB3DEC32603EFD40099CC7E /* LoginViewController.swift in Sources */,
 				7BB3DE6F25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

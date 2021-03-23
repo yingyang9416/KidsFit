@@ -7,16 +7,20 @@
 
 import UIKit
 import SPAlert
+import EasyPeasy
 
 let currentGymId = "gymid11223"
 
 class WhiteboardViewController: UIViewController {
 
     @IBOutlet weak var whiteboardTableView: UITableView!
+    @IBOutlet var commentContainerView: UIView!
+    @IBOutlet var commentTextView: UITextView!
     
     var dateShown: Date = Date()
     var dateSelectedFromPopover: Date?
     var wod: WOD?
+    var comments = [WODComment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,11 @@ class WhiteboardViewController: UIViewController {
         self.navigationItem.rightBarButtonItem  = rightBarbutton
         setupTableview()
         loadContent(for: dateShown, gymId: currentGymId)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        dismissKeyboardWhenTappedAround()
     }
     
     func setupTableview() {
@@ -39,19 +48,6 @@ class WhiteboardViewController: UIViewController {
         whiteboardTableView.tableHeaderView = headerImageView
 
     }
-
-    func addNavBarImage() {
-        let navController = navigationController!
-        let image = UIImage(named: "testLogo") //Your logo url here
-        let imageView = UIImageView(image: image)
-        let bannerWidth = navController.navigationBar.frame.size.width
-        let bannerHeight = navController.navigationBar.frame.size.height
-        let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-        let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-    }
         
     @objc func rightBarbuttonTapped() {
         let datePickerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DatePickerViewController")
@@ -61,6 +57,50 @@ class WhiteboardViewController: UIViewController {
         self.present(datePickerViewController, animated: true)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+//           return
+//        }
+        commentContainerView.isHidden = false
+        
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        commentContainerView.isHidden = true
+    }
+
+    @IBAction func commentButtonTapped(_ sender: Any) {
+        commentTextView.becomeFirstResponder()
+    }
+    
+    @IBAction func postButtonTapped(_ sender: Any) {
+        guard let content = commentTextView.text, !content.isEmpty else {
+            SPAlert.present(message: "Please write some comment and then submit", haptic: .error)
+            return
+        }
+        guard let userId = UserDefaults.currentUser()?.userId else {
+            SPAlert.present(message: "We are not able to identify you, please try again later", haptic: .error)
+            return
+        }
+        let timeString = DateFormatter().timeString(from: Date(), format: .fromJson)
+        let comment = WODComment(content: content, timeString: timeString, userId: userId)
+        let wodId = DateFormatter().timeString(from: dateShown, format: .dateIdFormat)
+        FirebaseDatabaseHelper.shared.insertWODComment(gymId: currentGymId, wodId: wodId, comment: comment) {
+            DispatchQueue.main.async {
+                SPAlert.present(title: "Successful!", preset: .done)
+            }
+        } onFailure: { (error) in
+            DispatchQueue.main.async {
+                SPAlert.present(message: error.localizedDescription, haptic: .error)
+            }
+        }
+
+        print("post tapped")
+    }
+    
+    
+
+    
     func loadContent(for date: Date, gymId: String) {
         let dateStringToShow = DateFormatter().dateString(from: date, format: .readableMonthAndDate)
         self.navigationItem.rightBarButtonItem?.title = dateStringToShow
@@ -69,6 +109,17 @@ class WhiteboardViewController: UIViewController {
             self.whiteboardTableView.reloadData()
         } onFailure: { (error) in
             SPAlert.present(message: "Error getting the content", haptic: .error)
+        }
+
+        FirebaseDatabaseHelper.shared.fetchWODComments(date: date, gymId: gymId) { (comments) in
+            self.comments = comments
+            DispatchQueue.main.async {
+                self.whiteboardTableView.reloadData()
+            }
+        } onFailure: { (error) in
+            DispatchQueue.main.async {
+                SPAlert.present(message: "Error getting the comments", haptic: .error)
+            }
         }
 
     }
@@ -86,8 +137,10 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 0:
             return 1
+        case 1:
+            return comments.count
         default:
-            return 8
+            return 0
         }
     }
     
@@ -101,9 +154,12 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.bind(title: "No workout found", body: "")
             }
             return cell
-        default:
+        case 1:
             let cell = tableView.dequeue(cell: WODCommentTableViewCell.self, indexPath: indexPath)
+            cell.bind(wodComment: comments[indexPath.row])
             return cell
+        default:
+            return UITableViewCell()
         }
         
     }
@@ -120,6 +176,12 @@ extension WhiteboardViewController: UIPopoverPresentationControllerDelegate {
             dateShown = dateSelected
             loadContent(for: dateShown, gymId: currentGymId)
         }
+    }
+}
+
+extension WhiteboardViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+
     }
 }
 
