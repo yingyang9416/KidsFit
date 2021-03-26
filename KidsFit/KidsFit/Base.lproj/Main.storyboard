@@ -165,21 +165,132 @@
             </objects>
             <point key="canvasLocation" x="2303" y="856"/>
         </scene>
-        <!--Friends-->
+        <!--Community-->
         <scene sceneID="cUy-3q-kxf">
             <objects>
                 <viewController id="3fh-E2-YQd" customClass="CommunityViewController" customModule="KidsFit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jc-Of-ZzP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mnX-iR-X9u">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3fh-E2-YQd" id="Kui-zn-b5B"/>
+                                    <outlet property="delegate" destination="3fh-E2-YQd" id="lax-wm-sxg"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2J7-tc-Kt4">
+                                <rect key="frame" x="334" y="733" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QHf-Gl-6Aa"/>
+                                    <constraint firstAttribute="width" constant="50" id="nMK-Uc-1sn"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="909-SH-sya" kind="show" id="sRI-0K-5am"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ANz-4v-nnS"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ANz-4v-nnS" firstAttribute="trailing" secondItem="mnX-iR-X9u" secondAttribute="trailing" id="Ebg-Wz-uDR"/>
+                            <constraint firstItem="mnX-iR-X9u" firstAttribute="top" secondItem="ANz-4v-nnS" secondAttribute="top" id="Jl0-R1-aFC"/>
+                            <constraint firstItem="mnX-iR-X9u" firstAttribute="leading" secondItem="ANz-4v-nnS" secondAttribute="leading" id="TgB-n0-lyR"/>
+                            <constraint firstItem="ANz-4v-nnS" firstAttribute="bottom" secondItem="mnX-iR-X9u" secondAttribute="bottom" id="Zmb-tE-Udq"/>
+                            <constraint firstItem="ANz-4v-nnS" firstAttribute="bottom" secondItem="2J7-tc-Kt4" secondAttribute="bottom" constant="30" id="tmt-b3-ZcG"/>
+                            <constraint firstItem="ANz-4v-nnS" firstAttribute="trailing" secondItem="2J7-tc-Kt4" secondAttribute="trailing" constant="30" id="u4w-Xn-heT"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Friends" id="ngZ-BB-CFR"/>
+                    <navigationItem key="navigationItem" title="Community" id="ngZ-BB-CFR"/>
+                    <connections>
+                        <outlet property="postTableView" destination="mnX-iR-X9u" id="GVd-gq-gaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fI-MM-PxA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3434.7826086956525" y="130.58035714285714"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="981-o3-Scr">
+            <objects>
+                <viewController id="909-SH-sya" customClass="PostViewController" customModule="KidsFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4us-NH-n1I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cg8-qD-8B6">
+                                <rect key="frame" x="87" y="128" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="GIQ-sT-g9v"/>
+                                    <constraint firstAttribute="height" constant="128" id="q8v-6A-scW"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVB-ZA-bv6">
+                                <rect key="frame" x="222" y="266" width="105" height="30"/>
+                                <color key="backgroundColor" red="0.24313725489999999" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Upload a photo">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="uploadPhotoTapped:" destination="909-SH-sya" eventType="touchUpInside" id="MTE-gA-Eu5"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hbi-NB-NFK">
+                                <rect key="frame" x="57" y="316" width="300" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2dI-rL-tcD"/>
+                                    <constraint firstAttribute="width" constant="300" id="32D-ue-xHM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrq-KC-tw2">
+                                <rect key="frame" x="326" y="476" width="31" height="30"/>
+                                <color key="backgroundColor" red="0.24313725489999999" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="postButtonTapped:" destination="909-SH-sya" eventType="touchUpInside" id="l3n-39-KhA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SjS-bL-KHb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hbi-NB-NFK" firstAttribute="top" secondItem="uVB-ZA-bv6" secondAttribute="bottom" constant="20" id="0bW-FR-VD6"/>
+                            <constraint firstItem="cg8-qD-8B6" firstAttribute="centerX" secondItem="SjS-bL-KHb" secondAttribute="centerX" id="34g-gd-xAV"/>
+                            <constraint firstItem="uVB-ZA-bv6" firstAttribute="top" secondItem="cg8-qD-8B6" secondAttribute="bottom" constant="10" id="3CY-ee-RyC"/>
+                            <constraint firstItem="uVB-ZA-bv6" firstAttribute="trailing" secondItem="cg8-qD-8B6" secondAttribute="trailing" id="45E-Zu-kul"/>
+                            <constraint firstItem="vrq-KC-tw2" firstAttribute="top" secondItem="Hbi-NB-NFK" secondAttribute="bottom" constant="10" id="EA2-Ri-GC7"/>
+                            <constraint firstItem="cg8-qD-8B6" firstAttribute="top" secondItem="SjS-bL-KHb" secondAttribute="top" constant="40" id="T8t-aj-z2p"/>
+                            <constraint firstItem="Hbi-NB-NFK" firstAttribute="centerX" secondItem="SjS-bL-KHb" secondAttribute="centerX" id="V8d-nV-R07"/>
+                            <constraint firstItem="vrq-KC-tw2" firstAttribute="trailing" secondItem="Hbi-NB-NFK" secondAttribute="trailing" id="WkQ-2z-sOf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Post" id="e8D-jS-UU6"/>
+                    <connections>
+                        <outlet property="postImageView" destination="cg8-qD-8B6" id="Ip6-Nr-7Ov"/>
+                        <outlet property="postTextView" destination="Hbi-NB-NFK" id="0Az-pR-MFo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mkL-v3-DVI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4394" y="142"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="TRb-Uh-Hha">
@@ -194,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftG-9M-cqw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4411" y="-3"/>
+            <point key="canvasLocation" x="4448" y="-569"/>
         </scene>
         <!--Me-->
         <scene sceneID="sCM-qQ-RTo">
@@ -280,9 +391,6 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -30,3 +30,9 @@ struct WODComment: Codable {
     }
     
 }
+
+struct PostComment: Codable {
+    var content: String
+    var timeString: String
+    var userId: String
+}

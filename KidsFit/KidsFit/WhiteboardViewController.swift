@@ -7,7 +7,6 @@
 
 import UIKit
 import SPAlert
-import EasyPeasy
 
 let currentGymId = "gymid11223"
 
