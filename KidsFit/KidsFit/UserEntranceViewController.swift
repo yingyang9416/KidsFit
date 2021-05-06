@@ -12,7 +12,6 @@ class UserEntranceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        print("flag: \(UserDefaults.checkUserLoggedIn())")
     }
     
     @IBAction func signup(_ sender: Any) {

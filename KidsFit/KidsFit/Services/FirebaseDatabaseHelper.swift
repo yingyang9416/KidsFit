@@ -27,6 +27,7 @@ class FirebaseDatabaseHelper: NSObject {
     private lazy var wodCommentRef = databaseRef.child("WODComment")
     private lazy var postRef = databaseRef.child("Post")
     private lazy var postImageStorageRef = storageRef.child("PostImage")
+    private lazy var profileImageStorageRef = storageRef.child("ProfileImage")
 
 
     func insertUser(uid:String, userDictionary: [String: Any], onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()){
@@ -37,6 +38,52 @@ class FirebaseDatabaseHelper: NSObject {
                 onSuccess()
             }
         }
+    }
+    
+    func updateMyInfo(user: User, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
+        guard let uid = user.userId else {
+            onFailure(AppError.noUserError)
+            return
+        }
+        
+        userRef.child(uid).updateChildValues(user.firebaseDictionary) { (error, _) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                do {
+                    try UserDefaults.standard.setObject(user, forKey: savedUser)
+                } catch {
+                    print("Failed to set userdefaults")
+                }
+                onSuccess()
+            }
+        }
+    }
+    
+    func upsertProfileImage(image: UIImage, user: User, onSuccess: @escaping (URL?)->(), onFailure: @escaping (Error)->()) {
+        guard let uid = user.userId, let data = UIImage.jpegData(image)(compressionQuality: 0.3) else {
+            onFailure(AppError.noUserError)
+            return
+        }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        let imagename = "\(uid).jpeg"
+        
+        profileImageStorageRef.child(imagename).putData(data, metadata: metaData) { (metaData, error) in
+            if error == nil {
+                self.profileImageStorageRef.child(imagename).downloadURL { (url, urlError) in
+                    if let imageUrl = url, let uid = user.userId {
+                        var dict = user.firebaseDictionary
+                        dict["profileImageUrlString"] = "\(imageUrl)"
+                        self.userRef.child(uid).updateChildValues(dict)
+                    }
+                    urlError == nil ? onSuccess(url) : onFailure(urlError!)
+                }
+            } else {
+                onFailure(error!)
+            }
+        }
+
     }
     
     func fetchUser(uid: String, onSuccess: @escaping (User?)->(), onFailure: @escaping (Error)->()) {
@@ -124,7 +171,7 @@ class FirebaseDatabaseHelper: NSObject {
                 }
             }
             group.notify(queue: .global(qos: .userInitiated)) {
-                let filtered = comments.compactMap { $0 }
+                let filtered = comments.compactMap { $0 }.sorted { $0.timeString > $1.timeString }
                 onSuccess(filtered)
             }
         }
@@ -162,7 +209,7 @@ class FirebaseDatabaseHelper: NSObject {
                 }
             }
             group.notify(queue: .global(qos: .userInitiated)) {
-                let compactPosts = posts.compactMap { $0 }
+                let compactPosts = posts.compactMap { $0 }.sorted { $0.timeString > $1.timeString }
                 onSuccess(compactPosts)
             }
         }

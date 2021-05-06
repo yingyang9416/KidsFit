@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WODCommentTableViewCell: UITableViewCell {
     
@@ -17,7 +18,6 @@ class WODCommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        commentLabel.text = "I like it\nerewr \nser sf ssfss s\nffefdfdsf444"
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
 
@@ -31,6 +31,7 @@ class WODCommentTableViewCell: UITableViewCell {
         FirebaseDatabaseHelper.shared.fetchUser(uid: wodComment.userId) { (user) in
             DispatchQueue.main.async {
                 self.titleLabel.text = user?.firstName
+                self.profileImageView.sd_setImage(with: URL(string: user?.profileImageUrlString ?? ""), placeholderImage: UIImage(named: "kidsfitness1"))
             }
         } onFailure: { (error) in
             print(error.localizedDescription)

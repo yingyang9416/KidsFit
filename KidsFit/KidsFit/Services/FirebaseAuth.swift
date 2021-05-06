@@ -24,15 +24,16 @@ class FirebaseAuth: NSObject{
                 onFailure(error)
             } else if let uid = authResult?.user.uid {
                 FirebaseDatabaseHelper.shared.insertUser(uid: uid, userDictionary: userDict) {
-                    onSuccess()
                     do {
                         let data = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted)
                         let user = try JSONDecoder().decode(User?.self, from: data)
                         user?.userId = uid
                         try UserDefaults.standard.setObject(user, forKey: savedUser)
                         UserDefaults.standard.set(true, forKey: isUserLoggedIn)
+                        onSuccess()
                     } catch {
                         print("errors decode the data")
+                        onFailure(AppError.otherError)
                     }
                 } onFailure: { (error) in
                     onFailure(error)
@@ -67,7 +68,29 @@ class FirebaseAuth: NSObject{
             }
         }
     }
+    
+    func logoutUser() -> Bool {
+        do {
+            try Auth.auth().signOut()
+            UserDefaults.standard.removeObject(forKey: savedUser)
+            UserDefaults.standard.set(false, forKey: isUserLoggedIn)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    func sendPasswordReset(onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
+        guard let email = UserDefaults.currentUser()?.email else { return }
         
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
+        }
+    }
     
     
 //    func sendPwdResetLink(email: String){

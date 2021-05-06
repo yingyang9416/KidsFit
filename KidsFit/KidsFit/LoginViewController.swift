@@ -25,9 +25,12 @@ class LoginViewController: UIViewController {
             return
         }
         
-        
         FirebaseAuth.shared.loginUser(email: email, password: pwd) {
-            print("success")
+            SPAlert.present(title: "Successful!", preset: .done)
+            let scene = UIApplication.shared.connectedScenes.first
+            if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                sceneDelegate.rout()
+            }
         } onFailure: { (error) in
             SPAlert.present(message: error.localizedDescription, haptic: .error)
         }

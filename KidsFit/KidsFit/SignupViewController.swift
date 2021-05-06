@@ -35,18 +35,16 @@ class SignupViewController: UIViewController {
     
     
     func signupUser() {
-//        FirebaseAuth.shared.signupUser(email: "yingyang9416@gmail.com", password: "Yy19940106") {
-//            print("success")
-//        } onFailure: { (error) in
-//            print("error")
-//            SPAlert.present(message: error.localizedDescription, haptic: .error)
-//
-//        }
+
         let userDictionary = ["firstName": firstNameField.text,
                               "lastName": lastNameField.text,
                               "email": emailField.text]
         FirebaseAuth.shared.signupUser(email: emailField.text!, userDict: userDictionary, password: "Yy19940106") {
             SPAlert.present(title: "Successful!", preset: .done)
+            let scene = UIApplication.shared.connectedScenes.first
+            if let sceneDelegate = scene?.delegate as? SceneDelegate {
+                sceneDelegate.rout()
+            }
         } onFailure: { (error) in
             SPAlert.present(message: error.localizedDescription, haptic: .error)
         }
