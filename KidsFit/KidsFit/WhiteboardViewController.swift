@@ -7,6 +7,7 @@
 
 import UIKit
 import SPAlert
+import ESPullToRefresh
 
 let currentGymId = "gymid11223"
 
@@ -15,23 +16,48 @@ class WhiteboardViewController: UIViewController {
     @IBOutlet weak var whiteboardTableView: UITableView!
     @IBOutlet var commentContainerView: UIView!
     @IBOutlet var commentTextView: UITextView!
+    @IBOutlet var commentButton: UIButton!
+    @IBOutlet var blurView: UIView!
+    @IBOutlet var doneImageView: UIImageView!
+    @IBOutlet var doneButton: UIButton!
     
     var dateShown: Date = Date()
     var dateSelectedFromPopover: Date?
     var wod: WOD?
     var comments = [WODComment]()
-    
+    var lastContentOffset: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         let dateString = DateFormatter().dateString(from: dateShown, format: .readableMonthAndDate)
-        let rightBarbutton = UIBarButtonItem(title: dateString, style: .plain, target: self, action: #selector(rightBarbuttonTapped))
-        self.navigationItem.rightBarButtonItem  = rightBarbutton
-        setupTableview()
-        loadContent(for: dateShown, gymId: currentGymId)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+    }
+    
+    func customizeNavTitle() {
+        let titleView = NavBarButtonDateView(frame: CGRect(x: 0, y: 0, width: 90, height: 30))
+        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(rightBarbuttonTapped))
+        titleView.addGestureRecognizer(gesture)
+        navigationItem.titleView = titleView
+    }
+    
+    func setupViews() {
+        customizeNavTitle()
+        commentButton.makeRounded()
+        commentButton.clipsToBounds = false
+        commentButton.setShadow(color: .darkGray, opacity: 0.4, radius: 2)
+        commentContainerView.makeRoundedCorner(radius: 25)
+        doneButton.layer.cornerRadius = 25
+        doneButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        commentContainerView.clipsToBounds = false
+        commentContainerView.setShadow(color: .black, opacity: 0.5, radius: 8)
+        commentTextView.placeholder = "What do you think about today's workout..."
+        doneImageView.isUserInteractionEnabled = false
+        setupTableview()
+        loadContent(for: dateShown, gymId: currentGymId)
         dismissKeyboardWhenTappedAround()
     }
     
@@ -40,6 +66,12 @@ class WhiteboardViewController: UIViewController {
         whiteboardTableView.register(cell: WODCommentTableViewCell.self)
         whiteboardTableView.rowHeight = UITableView.automaticDimension
         whiteboardTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+                
+        whiteboardTableView.es.addPullToRefresh {
+            [unowned self] in
+            loadContent(for: dateShown, gymId: currentGymId)
+            self.whiteboardTableView.es.stopPullToRefresh()
+        }
         
         // add image header
         let headerImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 300))
@@ -57,15 +89,13 @@ class WhiteboardViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-//        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-//           return
-//        }
         commentContainerView.isHidden = false
-        
+        blurView.isHidden = false
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         commentContainerView.isHidden = true
+        blurView.isHidden = true
     }
 
     @IBAction func commentButtonTapped(_ sender: Any) {
@@ -86,6 +116,8 @@ class WhiteboardViewController: UIViewController {
         let wodId = DateFormatter().timeString(from: dateShown, format: .dateIdFormat)
         FirebaseDatabaseHelper.shared.insertWODComment(gymId: currentGymId, wodId: wodId, comment: comment) {
             DispatchQueue.main.async {
+                self.commentTextView.text = nil
+                self.commentTextView.resignFirstResponder()
                 SPAlert.present(title: "Successful!", preset: .done)
             }
         } onFailure: { (error) in
@@ -147,11 +179,7 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeue(cell: WODWorkoutTableViewCell.self, indexPath: indexPath)
-            if let wod = self.wod {
-                cell.bind(title: wod.title, body: wod.workout)
-            } else {
-                cell.bind(title: "No workout found", body: "")
-            }
+            cell.bind(wod: wod)
             return cell
         case 1:
             let cell = tableView.dequeue(cell: WODCommentTableViewCell.self, indexPath: indexPath)
@@ -163,7 +191,21 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    
+    // this delegate is called when the tableview will start scrolling
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+
+    // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.lastContentOffset < scrollView.contentOffset.y { // did move up
+            commentButton.isHidden = true
+        } else if self.lastContentOffset > scrollView.contentOffset.y { // did move down
+            commentButton.isHidden = false
+        } else { // didn't move
+            
+        }
+    }
 
 }
 

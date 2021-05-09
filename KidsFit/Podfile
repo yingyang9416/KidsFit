@@ -12,6 +12,8 @@ target 'KidsFit' do
   pod 'Firebase/Storage'
   pod 'SDWebImage'
   pod 'SPAlert'
+  pod 'ESPullToRefresh'
+  pod 'youtube-ios-player-helper'
 
   target 'KidsFitTests' do
     inherit! :search_paths

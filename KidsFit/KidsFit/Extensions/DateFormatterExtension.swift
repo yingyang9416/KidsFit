@@ -17,6 +17,8 @@ enum DateTimeFormat: String {
     case dateFormat = "dd-MMM-yyyy"
     case fromJson = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
     case fromJsonDateOnly = "yyyy-MM-dd"
+    case monthAndDay = "MMMM dd"
+    case yearMonthAndDay = "MMMM dd, yyyy"
     case timeFormat = "hh:mm a"
     case quarter = "Q"
     case combinedDateTime = "dd-MMM-yyyy - hh:mm a"
@@ -44,5 +46,38 @@ extension DateFormatter {
     func timeString(from date: Date, format: DateTimeFormat = .timeFormat) -> String {
         self.dateFormat = format.rawValue
         return self.string(from: date)
+    }
+}
+
+extension Date {
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
+    
+    func isInSameYear(with date: Date) -> Bool {
+        return Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: date)
+    }
+    
+    func displayableTimePast(toDate: Date) -> String {
+        let delta = Int(toDate - self)
+        guard delta > 0 else { return "" }
+        
+        if delta < 60 {
+            return "\(delta) seconds ago"
+        } else if delta < (60 * 60) {
+            let minutes = delta / 60
+            return "\(minutes) \(minutes == 1 ? "minute" : "minutes") ago"
+        } else if delta < (60 * 60 * 24) {
+            let hours = delta / (60 * 60)
+            return "\(hours) \(hours == 1 ? "hour" : "hours") ago"
+        } else if delta < (60 * 60 * 24 * 7) {
+            let days = delta / (60 * 60 * 24)
+            return "\(days) \(days == 1 ? "day" : "days") ago"
+        } else if isInSameYear(with: toDate) {
+            return DateFormatter().dateString(from: self, format: .monthAndDay)
+        } else {
+            return DateFormatter().dateString(from: self, format: .yearMonthAndDay)
+        }
+        
     }
 }

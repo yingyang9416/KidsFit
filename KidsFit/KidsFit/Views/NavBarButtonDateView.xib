@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavBarButtonDateView" customModule="KidsFit" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="216" height="85"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2a-O9-yll">
+                    <rect key="frame" x="0.0" y="5" width="131" height="85"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropdown" translatesAutoresizingMaskIntoConstraints="NO" id="rik-49-yaV">
+                    <rect key="frame" x="136" y="5" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="rik-49-yaV" secondAttribute="height" id="Sfs-FN-glI"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="I2a-O9-yll" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="5" id="F06-ed-3QB"/>
+                <constraint firstItem="rik-49-yaV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="N5l-oN-EWs"/>
+                <constraint firstItem="rik-49-yaV" firstAttribute="leading" secondItem="I2a-O9-yll" secondAttribute="trailing" constant="5" id="PT6-0L-hWp"/>
+                <constraint firstItem="I2a-O9-yll" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bWq-Mf-V9B"/>
+                <constraint firstItem="I2a-O9-yll" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="jpj-6N-zDm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rik-49-yaV" secondAttribute="trailing" constant="5" id="m9Y-jg-TbY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rik-49-yaV" secondAttribute="bottom" constant="5" id="v4g-YP-XEI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="21.739130434782609" y="-238.72767857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dropdown" width="25" height="25"/>
+    </resources>
+</document>

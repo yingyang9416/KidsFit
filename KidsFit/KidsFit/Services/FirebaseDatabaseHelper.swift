@@ -9,13 +9,6 @@ import Foundation
 import FirebaseDatabase
 import FirebaseStorage
 
-class FeedsModel: Decodable {
-        var postId: String!
-        var authorId: String! //The author of the post
-        var timestamp: Double = 0.0 //We'll use it sort the posts.
-        //And other properties like 'likesCount', 'postDescription'...
-}
-
 class FirebaseDatabaseHelper: NSObject {
     static let shared = FirebaseDatabaseHelper()
     private override init(){}
@@ -104,37 +97,6 @@ class FirebaseDatabaseHelper: NSObject {
         
     }
     
-    
-//    class func getFeedsWith(lastKey: String?, completion: @escaping ((Bool, [FeedsModel]?) -> Void)) {
-//            let feedsReference = Database.database().reference().child("YOUR FEEDS' NODE")
-//            let query = (lastKey != nil) ? feedsReference.queryOrderedByKey().queryLimited(toLast: "YOUR NUMBER OF FEEDS PER PAGE" + 1).queryEnding(atValue: lastKey): feedsReference.queryOrderedByKey().queryLimited(toLast: "YOUR NUMBER OF FEEDS PER PAGE")
-//            //Last key would be nil initially(for the first page).
-//
-//            query.observeSingleEvent(of: .value) { (snapshot) in
-//                guard snapshot.exists(), let value = snapshot.value else {
-//                    completion(false, nil)
-//                    return
-//                }
-//                do {
-//                    let model = try FirebaseDecoder().decode([String: FeedsModel].self, from: value)
-//                    //We get the feeds in ['childAddedByAutoId key': model] manner. CodableFirebase decodes the data and we get our models populated.
-//                    var feeds = model.map { $0.value }
-//                    //Leaving the keys aside to get the array [FeedsModel]
-//                    feeds.sort(by: { (P, Q) -> Bool in P.timestamp > Q.timestamp })
-//                    //Sorting the values based on the timestamp, following recent first fashion. It is required because we may have lost the chronological order in the last steps.
-//                    if lastKey != nil { feeds = Array(feeds.dropFirst()) }
-//                    //Need to remove the first element(Only when the lastKey was not nil) because, it would be the same as the last one in the previous page.
-//                    completion(true, feeds)
-//                    //We get our data sorted and ready here.
-//                } catch let error {
-//                    print("Error occured while decoding - \(error.localizedDescription)")
-//                    completion(false, nil)
-//                }
-//            }
-//        }
-
-    
-    
     func fetchWOD(date: Date, gymId: String, onSuccess: @escaping (WOD?)->(), onFailure: @escaping (Error)->()) {
         let dateId = DateFormatter().dateString(from: date, format: .dateIdFormat)
         wodRef.child(gymId).child(dateId).observeSingleEvent(of: .value) { (snapshot) in
@@ -145,9 +107,39 @@ class FirebaseDatabaseHelper: NSObject {
                     onSuccess(wod)
                 } catch {
                     print("errors decode the data")
+                    onFailure(AppError.otherError)
                 }
             } else { // found nil value
                 onSuccess(nil)
+            }
+        }
+    }
+    
+    func fetchWODsWithVideo(gymId: String, completion: @escaping (Result<[WOD], Error>)->()) {
+        let query = wodRef.child(gymId).queryOrdered(byChild: FirebaseKey.videoId)
+        
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let group = DispatchGroup()
+            var wods = [WOD?]()
+            if let values = snapshot.value as? [String : Any] {
+                for v in values {  // wod id: v.key
+                    group.enter()
+                    if let date = DateFormatter().date(from: v.key, format: .dateIdFormat) {
+                        self.fetchWOD(date: date, gymId: gymId) { (wod) in
+                            wods.append(wod)
+                            group.leave()
+                        } onFailure: { (_) in
+                            group.leave()
+                        }
+
+                    } else {
+                        group.leave()
+                    }
+                }
+            }
+            group.notify(queue: .global(qos: .userInitiated)) {
+                let compactWods = wods.compactMap { $0 }.sorted { $0.dateString ?? "" > $1.dateString ?? "" }
+                completion(.success(compactWods))
             }
         }
     }
@@ -193,8 +185,10 @@ class FirebaseDatabaseHelper: NSObject {
         }
     }
     
-    func fetchAllPosts(onSuccess: @escaping ([Post])->(), onFailure: @escaping (Error)->()) {
-        postRef.observeSingleEvent(of: .value) { (snapshot) in
+    func fetchposts(lastKey: String?, onSuccess: @escaping ([Post])->(), onFailure: @escaping (Error)->()) {
+        let query = (lastKey == nil) ? postRef.queryOrdered(byChild: "timeString").queryLimited(toLast: 8) : postRef.queryOrdered(byChild: "timeString").queryLimited(toLast: 8).queryEnding(beforeValue: lastKey)
+
+        query.observeSingleEvent(of: .value) { (snapshot) in
             let group = DispatchGroup()
             var posts = [Post?]()
             if let values = snapshot.value as? [String : Any] {
@@ -211,6 +205,35 @@ class FirebaseDatabaseHelper: NSObject {
             group.notify(queue: .global(qos: .userInitiated)) {
                 let compactPosts = posts.compactMap { $0 }.sorted { $0.timeString > $1.timeString }
                 onSuccess(compactPosts)
+            }
+        }
+    }
+    
+    func fetchMyPosts(completion: @escaping (Result<[Post], Error>)->()) {
+        guard let uid = UserDefaults.currentUser()?.userId else {
+            completion(.failure(AppError.noUserError))
+            return
+        }
+        let query = postRef.queryOrdered(byChild: "userId").queryEnding(atValue: uid).queryStarting(atValue: uid)
+        
+//        let query = postRef.queryEqual(toValue: uid, childKey: FirebaseKey.userId)
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let group = DispatchGroup()
+            var posts = [Post?]()
+            if let values = snapshot.value as? [String : Any] {
+                for v in values {  // post id: v.key
+                    group.enter()
+                    self.fetchPost(id: v.key) { (post) in
+                        posts.append(post)
+                        group.leave()
+                    } onFailure: { (_) in
+                        group.leave()
+                    }
+                }
+            }
+            group.notify(queue: .global(qos: .userInitiated)) {
+                let compactPosts = posts.compactMap { $0 }.sorted { $0.timeString > $1.timeString }
+                completion(.success(compactPosts))
             }
         }
     }
@@ -243,6 +266,18 @@ class FirebaseDatabaseHelper: NSObject {
                 onSuccess()
             }
         }
+    }
+    
+    func upsert(wod: WOD, completion: @escaping (Result<(), Error>)->()) {
+        guard let gymId = wod.gymId, let date = wod.date else {
+            completion(.failure(AppError.otherError))
+            return
+        }
+        let dateId = DateFormatter().dateString(from: date, format: .dateIdFormat)
+        wodRef.child(gymId).child(dateId).updateChildValues(wod.firebaseDictionary) { (error, _) in
+            error == nil ? completion(.success(())) : completion(.failure(error!))
+        }
+        
     }
     
     func insertWODComment(gymId: String, wodId: String, comment: WODComment, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
@@ -293,6 +328,12 @@ class FirebaseDatabaseHelper: NSObject {
     }
     
     func insertPost(image: UIImage?, post: Post, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
+        
+        guard image != nil else {
+            onFailure(AppError.otherError)
+            return
+        }
+        
         guard let key = postRef.childByAutoId().key else {
             onFailure(AppError.otherError)
             return

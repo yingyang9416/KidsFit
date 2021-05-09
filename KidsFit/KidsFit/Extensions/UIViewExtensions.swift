@@ -33,4 +33,22 @@ extension UIView {
         frame.size.height = height
         self.frame = frame
     }
+    
+    func makeRounded() {
+        layer.cornerRadius = frame.size.width/2
+        clipsToBounds = true
+    }
+    
+    func makeRoundedCorner(radius: CGFloat) {
+        layer.cornerRadius = radius
+        clipsToBounds = true
+    }
+    
+    func setShadow(color: UIColor, opacity: Float, radius: CGFloat) {
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = .zero
+        layer.shadowRadius = radius
+
+    }
 }

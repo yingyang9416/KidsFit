@@ -18,13 +18,13 @@ class MoreViewController: UIViewController {
     }
     
     let settings: [[SettingsCellStruct]] =
-        [[SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Your Athlete Feed"),
-          SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Your info"),
-          SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Your Profile Photo")],
-         [SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Edit WOD")],
-         [SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Instagram")],
-         [SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Change Password"),
-          SettingsCellStruct(iconImage: UIImage(named: "kidsfitness1"), title: "Logout")]]
+        [[SettingsCellStruct(iconImage: UIImage.profile, title: "My profile")],
+         [SettingsCellStruct(iconImage: UIImage.edit, title: "Edit WOD")],
+         [SettingsCellStruct(iconImage: UIImage.video, title: "Workout videos")],
+         [SettingsCellStruct(iconImage: UIImage.instagram, title: "Instagram"),
+          SettingsCellStruct(iconImage: UIImage.youtube, title: "Youtube")],
+         [SettingsCellStruct(iconImage: UIImage.changePassword, title: "Change password"),
+          SettingsCellStruct(iconImage: UIImage.logout, title: "Logout")]]
     
     func setupTableView() {
         moreTableView.register(cell: MoreTableViewCell.self)
@@ -83,16 +83,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             switch indexPath.row {
             case 0:
-                return
-            case 1:
                 let storyboard = UIStoryboard(storyboard: .Main)
                 let myInfoVC = storyboard.instantiateViewController(withIdentifier: MyInfoViewController.self)
                 navigationController?.pushViewController(myInfoVC, animated: true)
-            case 2:
-                let storyboard = UIStoryboard(storyboard: .Main)
-                let photoVC = storyboard.instantiateViewController(withIdentifier: ProfilePhotoViewController.self)
-                navigationController?.pushViewController(photoVC, animated: true)
-
             default:
                 return
             }
@@ -105,20 +98,38 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 return
             }
-
         case 2:
             switch indexPath.row {
             case 0:
+                let storyboard = UIStoryboard(storyboard: .Main)
+                let videoVC = storyboard.instantiateViewController(withIdentifier: WorkoutVideosViewController.self)
+                navigationController?.pushViewController(videoVC, animated: true)
+            default:
+                return
+            }
+
+        case 3:
+            switch indexPath.row {
+            case 0:  // instagram
+                if let url = URL(string: "https://instagram.com/carterparkcrossfit/?igshid=v8fojqk7l6o1") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            case 1:  // youtube
                 if let url = URL(string: "https://instagram.com/carterparkcrossfit/?igshid=v8fojqk7l6o1") {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             default:
                 return
             }
-        case 3:
+        case 4:
             switch indexPath.row {
             case 0: // Reset password
-                sendPasswordReset()
+                let alert = UIAlertController(title: "Reset password", message: "We will send you an email to reset password. Do you want to proceed?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: .default) { (_) in
+                    self.sendPasswordReset()
+                })
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
             case 1:  // Log out
                 logoutUser()
             default:

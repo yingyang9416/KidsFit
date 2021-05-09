@@ -13,9 +13,11 @@
 		7B66256E260D72C6004D8CA4 /* MoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B66256C260D72C6004D8CA4 /* MoreTableViewCell.xib */; };
 		7B662573260D8821004D8CA4 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B662572260D8821004D8CA4 /* MyInfoViewController.swift */; };
 		7B662578260D8998004D8CA4 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B662577260D8998004D8CA4 /* UIStoryboardExtension.swift */; };
-		7B66257D260E6DD3004D8CA4 /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B66257C260E6DD3004D8CA4 /* ProfilePhotoViewController.swift */; };
 		7B66258A264471DE004D8CA4 /* EditWODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B662589264471DE004D8CA4 /* EditWODViewController.swift */; };
 		7B66258F264486AC004D8CA4 /* FlashAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B66258E264486AC004D8CA4 /* FlashAlert.swift */; };
+		7B6625F62645D713004D8CA4 /* NavBarButtonDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6625F52645D713004D8CA4 /* NavBarButtonDateView.swift */; };
+		7B6625FE2645D732004D8CA4 /* NavBarButtonDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6625FD2645D732004D8CA4 /* NavBarButtonDateView.xib */; };
+		7B66261D26462B96004D8CA4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B66261C26462B96004D8CA4 /* UIImageExtension.swift */; };
 		7BB3DD3F25C5E92A0099CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD3E25C5E92A0099CC7E /* AppDelegate.swift */; };
 		7BB3DD4125C5E92A0099CC7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */; };
 		7BB3DD4325C5E92A0099CC7E /* WhiteboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD4225C5E92A0099CC7E /* WhiteboardViewController.swift */; };
@@ -71,6 +73,14 @@
 		7BB3DEE3260AE0D80099CC7E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEE1260AE0D70099CC7E /* PostTableViewCell.swift */; };
 		7BB3DEE4260AE0D80099CC7E /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BB3DEE2260AE0D70099CC7E /* PostTableViewCell.xib */; };
 		7BB3DEE9260C29EC0099CC7E /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DEE8260C29EB0099CC7E /* PostViewController.swift */; };
+		7BEE699B26464BC500888EC9 /* UITextviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE699A26464BC500888EC9 /* UITextviewExtension.swift */; };
+		7BEE69A0264754C000888EC9 /* TextfieldWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE699F264754BF00888EC9 /* TextfieldWithTitle.swift */; };
+		7BEE69A5264754D700888EC9 /* TextfieldWithTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEE69A4264754D700888EC9 /* TextfieldWithTitle.xib */; };
+		7BEE69AA26475ED800888EC9 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE69A926475ED800888EC9 /* FirebaseKeys.swift */; };
+		7BEE69E5264789A600888EC9 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE69E4264789A600888EC9 /* DictionaryExtension.swift */; };
+		7BEE69EA2647A5C300888EC9 /* WorkoutVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE69E92647A5C300888EC9 /* WorkoutVideosViewController.swift */; };
+		7BEE69F02647A6A100888EC9 /* VideoThumbnailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEE69EE2647A6A100888EC9 /* VideoThumbnailTableViewCell.swift */; };
+		7BEE69F12647A6A100888EC9 /* VideoThumbnailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEE69EF2647A6A100888EC9 /* VideoThumbnailTableViewCell.xib */; };
 		89E6CBDFEC1F595B56E9ABC2 /* Pods_KidsFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB45A7510120F04E48198594 /* Pods_KidsFit.framework */; };
 		8A5A8693C439E5F775394B92 /* Pods_KidsFit_KidsFitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9955FBC87D509B63F610E8F /* Pods_KidsFit_KidsFitUITests.framework */; };
 /* End PBXBuildFile section */
@@ -101,9 +111,11 @@
 		7B66256C260D72C6004D8CA4 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		7B662572260D8821004D8CA4 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		7B662577260D8998004D8CA4 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
-		7B66257C260E6DD3004D8CA4 /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		7B662589264471DE004D8CA4 /* EditWODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWODViewController.swift; sourceTree = "<group>"; };
 		7B66258E264486AC004D8CA4 /* FlashAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashAlert.swift; sourceTree = "<group>"; };
+		7B6625F52645D713004D8CA4 /* NavBarButtonDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarButtonDateView.swift; sourceTree = "<group>"; };
+		7B6625FD2645D732004D8CA4 /* NavBarButtonDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarButtonDateView.xib; sourceTree = "<group>"; };
+		7B66261C26462B96004D8CA4 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		7BB3DD3B25C5E92A0099CC7E /* KidsFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB3DD3E25C5E92A0099CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +159,14 @@
 		7BB3DEE1260AE0D70099CC7E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		7BB3DEE2260AE0D70099CC7E /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		7BB3DEE8260C29EB0099CC7E /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		7BEE699A26464BC500888EC9 /* UITextviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextviewExtension.swift; sourceTree = "<group>"; };
+		7BEE699F264754BF00888EC9 /* TextfieldWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldWithTitle.swift; sourceTree = "<group>"; };
+		7BEE69A4264754D700888EC9 /* TextfieldWithTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextfieldWithTitle.xib; sourceTree = "<group>"; };
+		7BEE69A926475ED800888EC9 /* FirebaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
+		7BEE69E4264789A600888EC9 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		7BEE69E92647A5C300888EC9 /* WorkoutVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutVideosViewController.swift; sourceTree = "<group>"; };
+		7BEE69EE2647A6A100888EC9 /* VideoThumbnailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailTableViewCell.swift; sourceTree = "<group>"; };
+		7BEE69EF2647A6A100888EC9 /* VideoThumbnailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoThumbnailTableViewCell.xib; sourceTree = "<group>"; };
 		A9955FBC87D509B63F610E8F /* Pods_KidsFit_KidsFitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit_KidsFitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB45A7510120F04E48198594 /* Pods_KidsFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D564FCEE91BB775E29B6FD00 /* Pods-KidsFit-KidsFitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.debug.xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +226,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7B6625F42645D6AD004D8CA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B6625F52645D713004D8CA4 /* NavBarButtonDateView.swift */,
+				7B6625FD2645D732004D8CA4 /* NavBarButtonDateView.xib */,
+				7BEE699F264754BF00888EC9 /* TextfieldWithTitle.swift */,
+				7BEE69A4264754D700888EC9 /* TextfieldWithTitle.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7BB3DD3225C5E92A0099CC7E = {
 			isa = PBXGroup;
 			children = (
@@ -244,11 +275,12 @@
 				7BB3DEE8260C29EB0099CC7E /* PostViewController.swift */,
 				7B662566260D71F2004D8CA4 /* MoreViewController.swift */,
 				7B662572260D8821004D8CA4 /* MyInfoViewController.swift */,
-				7B66257C260E6DD3004D8CA4 /* ProfilePhotoViewController.swift */,
 				7B662589264471DE004D8CA4 /* EditWODViewController.swift */,
+				7BEE69E92647A5C300888EC9 /* WorkoutVideosViewController.swift */,
 				7BB3DE3125C74C730099CC7E /* Extensions */,
 				7BB3DDDB25C6694B0099CC7E /* Services */,
-				7BB3DE3B25C8A4950099CC7E /* Views */,
+				7B6625F42645D6AD004D8CA4 /* Views */,
+				7BB3DE3B25C8A4950099CC7E /* Cells */,
 				7BB3DE5725C8E0910099CC7E /* Models */,
 				7BB3DD4425C5E92A0099CC7E /* Main.storyboard */,
 				7BB3DD9025C625DE0099CC7E /* Authentication.storyboard */,
@@ -283,6 +315,7 @@
 			children = (
 				7BB3DDDC25C66A3B0099CC7E /* FirebaseAuth.swift */,
 				7BB3DE0C25C687180099CC7E /* FirebaseDatabaseHelper.swift */,
+				7BEE69A926475ED800888EC9 /* FirebaseKeys.swift */,
 				7B66258E264486AC004D8CA4 /* FlashAlert.swift */,
 			);
 			path = Services;
@@ -298,11 +331,14 @@
 				7BB3DEA625D38F2B0099CC7E /* UIViewExtensions.swift */,
 				7BB3DEB92602F1670099CC7E /* UserdefaultsExtension.swift */,
 				7B662577260D8998004D8CA4 /* UIStoryboardExtension.swift */,
+				7B66261C26462B96004D8CA4 /* UIImageExtension.swift */,
+				7BEE699A26464BC500888EC9 /* UITextviewExtension.swift */,
+				7BEE69E4264789A600888EC9 /* DictionaryExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		7BB3DE3B25C8A4950099CC7E /* Views */ = {
+		7BB3DE3B25C8A4950099CC7E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				7BB3DE3C25C8A4F00099CC7E /* WODWorkoutTableViewCell.swift */,
@@ -313,8 +349,10 @@
 				7BB3DEE2260AE0D70099CC7E /* PostTableViewCell.xib */,
 				7B66256B260D72C6004D8CA4 /* MoreTableViewCell.swift */,
 				7B66256C260D72C6004D8CA4 /* MoreTableViewCell.xib */,
+				7BEE69EE2647A6A100888EC9 /* VideoThumbnailTableViewCell.swift */,
+				7BEE69EF2647A6A100888EC9 /* VideoThumbnailTableViewCell.xib */,
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7BB3DE5725C8E0910099CC7E /* Models */ = {
@@ -439,12 +477,15 @@
 			files = (
 				7B66256E260D72C6004D8CA4 /* MoreTableViewCell.xib in Resources */,
 				7BB3DD9125C625DE0099CC7E /* Authentication.storyboard in Resources */,
+				7B6625FE2645D732004D8CA4 /* NavBarButtonDateView.xib in Resources */,
 				7BB3DD4B25C5E92B0099CC7E /* LaunchScreen.storyboard in Resources */,
 				7BB3DDA625C629DF0099CC7E /* GoogleService-Info.plist in Resources */,
+				7BEE69A5264754D700888EC9 /* TextfieldWithTitle.xib in Resources */,
 				7BB3DD4825C5E92B0099CC7E /* Assets.xcassets in Resources */,
 				7BB3DE3F25C8A4F00099CC7E /* WODWorkoutTableViewCell.xib in Resources */,
 				7BB3DE5325C8AD270099CC7E /* WODCommentTableViewCell.xib in Resources */,
 				7BB3DD4625C5E92A0099CC7E /* Main.storyboard in Resources */,
+				7BEE69F12647A6A100888EC9 /* VideoThumbnailTableViewCell.xib in Resources */,
 				7BB3DEE4260AE0D80099CC7E /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,15 +620,20 @@
 				7B66258F264486AC004D8CA4 /* FlashAlert.swift in Sources */,
 				7BB3DE7425CFA1540099CC7E /* UserEntranceViewController.swift in Sources */,
 				7BB3DD3F25C5E92A0099CC7E /* AppDelegate.swift in Sources */,
+				7BEE69F02647A6A100888EC9 /* VideoThumbnailTableViewCell.swift in Sources */,
+				7BEE69AA26475ED800888EC9 /* FirebaseKeys.swift in Sources */,
+				7BEE69E5264789A600888EC9 /* DictionaryExtension.swift in Sources */,
 				7BB3DEAC25D3B1F70099CC7E /* FirebaseObject.swift in Sources */,
 				7BB3DE3325C74C910099CC7E /* DateFormatterExtension.swift in Sources */,
 				7BB3DEA725D38F2B0099CC7E /* UIViewExtensions.swift in Sources */,
 				7BB3DE4C25C8A6520099CC7E /* UITableViewExtenstion.swift in Sources */,
 				7BB3DEDD260A88720099CC7E /* Post.swift in Sources */,
-				7B66257D260E6DD3004D8CA4 /* ProfilePhotoViewController.swift in Sources */,
 				7BB3DEB325D3B3810099CC7E /* Comment.swift in Sources */,
 				7B66258A264471DE004D8CA4 /* EditWODViewController.swift in Sources */,
+				7BEE69EA2647A5C300888EC9 /* WorkoutVideosViewController.swift in Sources */,
+				7B66261D26462B96004D8CA4 /* UIImageExtension.swift in Sources */,
 				7BB3DDDD25C66A3B0099CC7E /* FirebaseAuth.swift in Sources */,
+				7B6625F62645D713004D8CA4 /* NavBarButtonDateView.swift in Sources */,
 				7BB3DE7925CFADF50099CC7E /* User.swift in Sources */,
 				7BB3DEC12603EFD40099CC7E /* LoginViewController.swift in Sources */,
 				7BB3DE6625CE24930099CC7E /* AppError.swift in Sources */,
@@ -601,9 +647,11 @@
 				7B662573260D8821004D8CA4 /* MyInfoViewController.swift in Sources */,
 				7BB3DE6125CBB4D50099CC7E /* CommunityViewController.swift in Sources */,
 				7BB3DE6D25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */,
+				7BEE69A0264754C000888EC9 /* TextfieldWithTitle.swift in Sources */,
 				7BB3DDC025C635470099CC7E /* SignupViewController.swift in Sources */,
 				7B662578260D8998004D8CA4 /* UIStoryboardExtension.swift in Sources */,
 				7B66256D260D72C6004D8CA4 /* MoreTableViewCell.swift in Sources */,
+				7BEE699B26464BC500888EC9 /* UITextviewExtension.swift in Sources */,
 				7BB3DE8A25D0ED580099CC7E /* UIViewControllerExtension.swift in Sources */,
 				7BB3DD4125C5E92A0099CC7E /* SceneDelegate.swift in Sources */,
 				7BB3DE4725C8A54B0099CC7E /* UITableViewCellExtenstion.swift in Sources */,
