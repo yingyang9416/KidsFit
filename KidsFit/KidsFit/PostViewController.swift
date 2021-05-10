@@ -57,7 +57,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate & UI
         
         doneButton.isEnabled = false
         let timeString = DateFormatter().timeString(from: Date(), format: .fromJson)
-        let post = Post(text: text, timeString: timeString, userId: uid)
+        var post = Post(text: text, timeString: timeString, userId: uid)
+        post.gymId = currentGymId
         
         let image = imageUploaded ? postImageView.image : nil
         loadingSpinner.startAnimating()

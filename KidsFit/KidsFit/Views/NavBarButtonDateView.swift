@@ -10,6 +10,8 @@ import UIKit
 class NavBarButtonDateView: UIView {
     let nibName = "NavBarButtonDateView"
     
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -24,6 +26,9 @@ class NavBarButtonDateView: UIView {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
         self.addSubview(view)
+        imageView.isUserInteractionEnabled = false
+        titleLabel.isUserInteractionEnabled = false
+
     }
     
     func loadViewFromNib() -> UIView? {

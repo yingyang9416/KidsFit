@@ -10,41 +10,56 @@ import Firebase
 import SPAlert
 
 class SignupViewController: UIViewController {
-
-    @IBOutlet var firstNameField: UITextField!
-    @IBOutlet var lastNameField: UITextField!
-    @IBOutlet var emailField: UITextField!
     
+    @IBOutlet var firstNameView: TextfieldWithTitle!
+    @IBOutlet var lastNameView: TextfieldWithTitle!
+    @IBOutlet var emailView: TextfieldWithTitle!
+    @IBOutlet var passwordView: TextfieldWithTitle!
+    @IBOutlet var signupButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameField.placeholder = "First Name"
-        lastNameField.placeholder = "Last Name"
-        emailField.placeholder = "Email"
-        
+        dismissKeyboardWhenTappedAround()
+        [firstNameView, lastNameView, emailView, passwordView].forEach {
+            $0?.type = .largeWhite
+        }
+        firstNameView.title = "First name"
+        lastNameView.title = "Last name"
+        emailView.title = "Email"
+        passwordView.title = "Password"
+        passwordView.isPasswordView = true
+        signupButton.makeRounded()
+        signupButton.layer.borderWidth = 2
+        signupButton.layer.borderColor = UIColor.white.cgColor
     }
     
-    @IBAction func signup(_ sender: Any) {
+        
+    @IBAction func signupTapped(_ sender: Any) {
         signupUser()
     }
     
-    @IBAction func currentUser(_ sender: Any) {
-        let user = Auth.auth().currentUser
-        print("currnt user :\(user?.uid)")
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
-    
     func signupUser() {
+        guard let firstName = firstNameView.text, !firstName.isEmpty,
+              let lastName = lastNameView.text, !lastName.isEmpty,
+              let email = emailView.text, !email.isEmpty,
+              let password = passwordView.text, !password.isEmpty else {
+            FlashAlert.presentError(with: "Please fill all fields")
+            return
+        }
 
-        let userDictionary = ["firstName": firstNameField.text,
-                              "lastName": lastNameField.text,
-                              "email": emailField.text]
-        FirebaseAuth.shared.signupUser(email: emailField.text!, userDict: userDictionary, password: "Yy19940106") {
-            SPAlert.present(title: "Successful!", preset: .done)
+        let userDictionary = [FirebaseKey.firstName: firstName,
+                              FirebaseKey.lastName: lastName,
+                              FirebaseKey.email: email]
+        FirebaseAuth.shared.signupUser(email: email, userDict: userDictionary, password: password) {
             let scene = UIApplication.shared.connectedScenes.first
             if let sceneDelegate = scene?.delegate as? SceneDelegate {
                 sceneDelegate.rout()
             }
+            SPAlert.present(message: "Welcome, \(firstName) \(lastName)!", haptic: .success)
         } onFailure: { (error) in
             SPAlert.present(message: error.localizedDescription, haptic: .error)
         }

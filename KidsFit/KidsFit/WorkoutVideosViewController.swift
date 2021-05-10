@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class WorkoutVideosViewController: UIViewController {
 
@@ -15,12 +16,25 @@ class WorkoutVideosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableview.register(cell: VideoThumbnailTableViewCell.self)
-        tableview.rowHeight = UITableView.automaticDimension
-        fetchDisplayWods()
+        setupViews()
+        fetchDisplayWods {}
+        
     }
     
-    func fetchDisplayWods() {
+    func setupViews() {
+        tableview.register(cell: VideoThumbnailTableViewCell.self)
+        tableview.rowHeight = UITableView.automaticDimension
+        tableview.separatorStyle = .none
+        tableview.es.addPullToRefresh { [unowned self] in
+            self.fetchDisplayWods {
+                DispatchQueue.main.async {
+                    tableview.es.stopPullToRefresh()
+                }
+            }
+        }
+    }
+    
+    func fetchDisplayWods(completion: @escaping () -> ()) {
         FirebaseDatabaseHelper.shared.fetchWODsWithVideo(gymId: currentGymId) { (result) in
             switch result {
             case .success(let wods):
@@ -33,6 +47,7 @@ class WorkoutVideosViewController: UIViewController {
                     FlashAlert.present(error: error)
                 }
             }
+            completion()
         }
     }
     

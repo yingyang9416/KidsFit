@@ -15,29 +15,37 @@ class EditWODViewController: UIViewController {
     @IBOutlet var titleField: TextfieldWithTitle!
     @IBOutlet var videoIdField: TextfieldWithTitle!
     
+    @IBOutlet var permissionView: UIView!
+    @IBOutlet var editWODView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dismissKeyboardWhenTappedAround()
         setupViews()
-        loadWODInfo()
-        guard let uid = UserDefaults.currentUser()?.userId else { return }
-        
-        FirebaseDatabaseHelper.shared.fetchUser(uid: uid) { (user) in
-            print("is admin: \(user?.isAdmin)")
-        } onFailure: { (_) in
-            
-        }
-
     }
     
     func setupViews() {
         titleField.titleLabel.text = "Title (optional)"
         videoIdField.titleLabel.text = "Youtube video id (optional)"
-        textView.placeholder = "workout of the day..."
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.systemGray.cgColor
         
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
         navigationController?.navigationBar.tintColor = .white
+        
+        guard let uid = UserDefaults.currentUser()?.userId else { return }
+        FirebaseDatabaseHelper.shared.fetchUser(uid: uid) { (user) in
+            let isAdmin = user?.isAdmin ?? false
+            self.permissionView.isHidden = isAdmin
+            self.editWODView.isHidden = !isAdmin
+            if isAdmin {
+                self.loadWODInfo()
+            }
+        } onFailure: { (_) in
+            
+        }
+
     }
     
     func loadWODInfo() {
@@ -63,7 +71,7 @@ class EditWODViewController: UIViewController {
             return
         }
         let dateString = DateFormatter().dateString(from: datePicker.date, format: .dateIdFormat)
-        let wod = WOD(gymId: currentGymId, date: datePicker.date, title: titleField.textField.text, workout: workout, dateString: dateString, videoId: videoIdField.textField.text)
+        let wod = WOD(gymId: currentGymId, title: titleField.textField.text, workout: workout, dateString: dateString, videoId: videoIdField.textField.text)
         
         FirebaseDatabaseHelper.shared.upsert(wod: wod) { (result) in
             switch result {

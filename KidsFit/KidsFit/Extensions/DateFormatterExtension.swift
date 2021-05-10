@@ -17,8 +17,7 @@ enum DateTimeFormat: String {
     case dateFormat = "dd-MMM-yyyy"
     case fromJson = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
     case fromJsonDateOnly = "yyyy-MM-dd"
-    case monthAndDay = "MMMM dd"
-    case yearMonthAndDay = "MMMM dd, yyyy"
+    case shortWeekMonthDay = "EEE, MMM dd"
     case timeFormat = "hh:mm a"
     case quarter = "Q"
     case combinedDateTime = "dd-MMM-yyyy - hh:mm a"
@@ -58,6 +57,15 @@ extension Date {
         return Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: date)
     }
     
+    func isInSameMonth(with date: Date) -> Bool {
+        return isInSameYear(with: date) && Calendar.current.component(.month, from: self) == Calendar.current.component(.month, from: date)
+    }
+    
+    func isOnSameDay(with date: Date) -> Bool {
+        return isInSameMonth(with: date) && Calendar.current.component(.day, from: self) == Calendar.current.component(.day, from: date)
+    }
+    
+    
     func displayableTimePast(toDate: Date) -> String {
         let delta = Int(toDate - self)
         guard delta > 0 else { return "" }
@@ -74,10 +82,24 @@ extension Date {
             let days = delta / (60 * 60 * 24)
             return "\(days) \(days == 1 ? "day" : "days") ago"
         } else if isInSameYear(with: toDate) {
-            return DateFormatter().dateString(from: self, format: .monthAndDay)
+            return DateFormatter().dateString(from: self, format: .readableMonthAndDate)
         } else {
-            return DateFormatter().dateString(from: self, format: .yearMonthAndDay)
+            return DateFormatter().dateString(from: self, format: .shortReadableDateFormat)
         }
         
+    }
+    
+    func dispayableWodDate() -> String {
+        if Calendar.current.isDateInToday(self) {
+            return "Today"
+        } else if Calendar.current.isDateInTomorrow(self) {
+            return "Tomorrow"
+        } else if Calendar.current.isDateInYesterday(self) {
+            return "Yesterday"
+        } else if self.isInSameYear(with: Date()) {
+            return DateFormatter().dateString(from: self, format: .shortWeekMonthDay)
+        } else {
+            return DateFormatter().dateString(from: self, format: .shortReadableDateFormat)
+        }
     }
 }

@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,27 +24,44 @@
                             <constraint firstAttribute="height" constant="24" id="PUt-qN-Kgl"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fd-VM-StC">
-                        <rect key="frame" x="64" y="14" width="361" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fd-VM-StC">
+                        <rect key="frame" x="64" y="12.5" width="241" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                         <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgw-JO-yVQ">
+                        <rect key="frame" x="315" y="15" width="120" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="iX8-lA-pJv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                        <color key="textColor" systemColor="systemGray3Color"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="0fd-VM-StC" secondAttribute="trailing" constant="20" id="ISx-CA-rI6"/>
                     <constraint firstItem="0fd-VM-StC" firstAttribute="leading" secondItem="e8R-UX-9bS" secondAttribute="trailing" constant="20" id="pjM-xr-tsc"/>
+                    <constraint firstItem="Qgw-JO-yVQ" firstAttribute="leading" secondItem="0fd-VM-StC" secondAttribute="trailing" constant="10" id="poB-gL-N4X"/>
                     <constraint firstItem="e8R-UX-9bS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rMr-QD-klu"/>
                     <constraint firstItem="e8R-UX-9bS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="thE-Ft-UOB"/>
                     <constraint firstItem="0fd-VM-StC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tin-8n-G0k"/>
+                    <constraint firstItem="Qgw-JO-yVQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="u87-rM-6LO"/>
+                    <constraint firstAttribute="trailing" secondItem="Qgw-JO-yVQ" secondAttribute="trailing" constant="10" id="w8F-3W-Uhv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="accessoryLabel" destination="Qgw-JO-yVQ" id="WhJ-tH-VZP"/>
                 <outlet property="iconImageView" destination="e8R-UX-9bS" id="eMB-OO-4SD"/>
                 <outlet property="titleLabel" destination="0fd-VM-StC" id="rjm-ha-VfM"/>
             </connections>
             <point key="canvasLocation" x="83.333333333333343" y="46.875"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

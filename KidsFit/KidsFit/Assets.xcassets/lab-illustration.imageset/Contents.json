@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "pixeltrue-working-in-a-laboratory-1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "pixeltrue-working-in-a-laboratory-2.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "pixeltrue-working-in-a-laboratory-3.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

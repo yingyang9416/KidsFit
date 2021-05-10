@@ -11,6 +11,9 @@ class MeViewController: UIViewController {
     
     @IBOutlet var postTableView: UITableView!
     var allPosts = [Post]()
+    var noPosts: Bool {
+        return allPosts.isEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,7 @@ class MeViewController: UIViewController {
     
     func setupTableView() {
         postTableView.register(cell: PostTableViewCell.self)
+        postTableView.register(cell: EmptyContentTableViewCell.self)
         postTableView.rowHeight = UITableView.automaticDimension
         postTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
 
@@ -51,13 +55,20 @@ class MeViewController: UIViewController {
 
 extension MeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allPosts.count
+        return noPosts ? 1 : allPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(cell: PostTableViewCell.self, indexPath: indexPath)
-        cell.bind(post: allPosts[indexPath.row])
-        return cell
+        if noPosts {
+            let cell = tableView.dequeue(cell: EmptyContentTableViewCell.self, indexPath: indexPath)
+            cell.type = .noPosts
+            return cell
+        } else {
+            let cell = tableView.dequeue(cell: PostTableViewCell.self, indexPath: indexPath)
+            cell.bind(post: allPosts[indexPath.row])
+            return cell
+
+        }
     }
     
 }

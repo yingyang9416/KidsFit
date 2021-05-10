@@ -14,12 +14,14 @@ struct Post: Codable {
     var timeString: String
     var userId: String
     var id: String?
+    var gymId: String?
     
     var firebaseDictionary: [String: Any] {
         var result = [String: Any]()
         result["text"] = text
         result["timeString"] = timeString
         result["userId"] = userId
+        result.addIfNotNil(key: FirebaseKey.gymId, value: gymId)
         return result
     }
     

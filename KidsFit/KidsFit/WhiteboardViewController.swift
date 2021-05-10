@@ -9,7 +9,7 @@ import UIKit
 import SPAlert
 import ESPullToRefresh
 
-let currentGymId = "gymid11223"
+let currentGymId = "defaultgymid"
 
 class WhiteboardViewController: UIViewController {
 
@@ -21,6 +21,7 @@ class WhiteboardViewController: UIViewController {
     @IBOutlet var doneImageView: UIImageView!
     @IBOutlet var doneButton: UIButton!
     
+    var navTitleView = NavBarButtonDateView()
     var dateShown: Date = Date()
     var dateSelectedFromPopover: Date?
     var wod: WOD?
@@ -30,7 +31,6 @@ class WhiteboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        let dateString = DateFormatter().dateString(from: dateShown, format: .readableMonthAndDate)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -38,14 +38,21 @@ class WhiteboardViewController: UIViewController {
     }
     
     func customizeNavTitle() {
-        let titleView = NavBarButtonDateView(frame: CGRect(x: 0, y: 0, width: 90, height: 30))
-        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(rightBarbuttonTapped))
+        let titleView = NavBarButtonDateView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
+        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navTitileTapped))
         titleView.addGestureRecognizer(gesture)
         navigationItem.titleView = titleView
+        navTitleView = titleView
+    }
+    
+    func updateNavTitle() {
+        navTitleView.titleLabel.text = dateShown.dispayableWodDate()
     }
     
     func setupViews() {
         customizeNavTitle()
+        updateNavTitle()
+        
         commentButton.makeRounded()
         commentButton.clipsToBounds = false
         commentButton.setShadow(color: .darkGray, opacity: 0.4, radius: 2)
@@ -64,6 +71,7 @@ class WhiteboardViewController: UIViewController {
     func setupTableview() {
         whiteboardTableView.register(cell: WODWorkoutTableViewCell.self)
         whiteboardTableView.register(cell: WODCommentTableViewCell.self)
+        whiteboardTableView.register(cell: EmptyContentTableViewCell.self)
         whiteboardTableView.rowHeight = UITableView.automaticDimension
         whiteboardTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
                 
@@ -80,8 +88,8 @@ class WhiteboardViewController: UIViewController {
 
     }
         
-    @objc func rightBarbuttonTapped() {
-        let datePickerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DatePickerViewController")
+    @objc func navTitileTapped() {
+        let datePickerViewController = UIStoryboard(storyboard: .Main).instantiateViewController(withIdentifier: DatePickerViewController.self)
         datePickerViewController.modalPresentationStyle = .popover
         datePickerViewController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         datePickerViewController.popoverPresentationController?.delegate = self
@@ -161,7 +169,8 @@ class WhiteboardViewController: UIViewController {
 extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        let noCommets = comments.isEmpty
+        return noCommets ? 3 : 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,6 +179,8 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         case 1:
             return comments.count
+        case 2:
+            return 1
         default:
             return 0
         }
@@ -184,6 +195,10 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = tableView.dequeue(cell: WODCommentTableViewCell.self, indexPath: indexPath)
             cell.bind(wodComment: comments[indexPath.row])
+            return cell
+        case 2:
+            let cell = tableView.dequeue(cell: EmptyContentTableViewCell.self, indexPath: indexPath)
+            cell.type = .noComments
             return cell
         default:
             return UITableViewCell()
@@ -215,6 +230,8 @@ extension WhiteboardViewController: UIPopoverPresentationControllerDelegate {
         
         if DateFormatter().dateString(from: dateShown, format: .readableMonthAndDate) != DateFormatter().dateString(from: dateSelected, format: .readableMonthAndDate) {
             dateShown = dateSelected
+            updateNavTitle()
+            comments = []
             loadContent(for: dateShown, gymId: currentGymId)
         }
     }

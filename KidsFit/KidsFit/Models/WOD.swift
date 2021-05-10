@@ -9,11 +9,14 @@ import Foundation
 
 struct WOD: Codable {
     var gymId: String?
-    var date: Date?
+//    var date: Date?
     var title: String?
     var workout: String
-    var dateString: String?
+    var dateString: String
     var videoId: String?
+    var date: Date? {
+        return DateFormatter().date(from: dateString, format: .dateIdFormat)
+    }
     
     var firebaseDictionary: [String: Any] {
         var result = [String: Any]()

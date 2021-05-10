@@ -13,15 +13,21 @@ enum commentType: String {
 }
 
 struct WODComment: Codable {
+    var id: String?
     var content: String
     var timeString: String
     var userId: String
+    var wodId: String?
+    var gymId: String?
     
     var firebaseDictionary: [String: Any] {
         var result = [String: Any]()
         result["content"] = content
         result["timeString"] = timeString
         result["userId"] = userId
+        result.addIfNotNil(key: FirebaseKey.gymId, value: gymId)
+        result.addIfNotNil(key: FirebaseKey.wodId, value: wodId)
+
         return result
     }
     

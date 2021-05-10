@@ -14,8 +14,11 @@ class FirebaseDatabaseHelper: NSObject {
     private override init(){}
 
     private lazy var databaseRef = Database.database().reference()
+//    private lazy var databaseRef = Database.database(url: "https://kidsfit.firebaseio.com/").reference()
     private lazy var storageRef = Storage.storage().reference()
+//    private lazy var storageRef = Storage.storage(url: "gs://kidsfit/").reference()
     private lazy var userRef = databaseRef.child("User")
+    private lazy var gymRef = databaseRef.child("Gym")
     private lazy var wodRef = databaseRef.child("WOD")
     private lazy var wodCommentRef = databaseRef.child("WODComment")
     private lazy var postRef = databaseRef.child("Post")
@@ -79,6 +82,24 @@ class FirebaseDatabaseHelper: NSObject {
 
     }
     
+    func fetchGymInfo(gymId: String, completion: @escaping (Result<Gym?, Error>)->()) {
+        gymRef.child(gymId).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    var gym = try JSONDecoder().decode(Gym?.self, from: data)
+                    gym?.id = gymId
+                    completion(.success(gym))
+                } catch {
+                    completion(.failure(AppError.otherError))
+                    print("errors decode the data")
+                }
+            } else { // found nil value
+                completion(.success(nil))
+            }
+        }
+    }
+    
     func fetchUser(uid: String, onSuccess: @escaping (User?)->(), onFailure: @escaping (Error)->()) {
         userRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? [String: Any] {
@@ -116,9 +137,8 @@ class FirebaseDatabaseHelper: NSObject {
     }
     
     func fetchWODsWithVideo(gymId: String, completion: @escaping (Result<[WOD], Error>)->()) {
-        let query = wodRef.child(gymId).queryOrdered(byChild: FirebaseKey.videoId)
         
-        query.observeSingleEvent(of: .value) { (snapshot) in
+        wodRef.child(gymId).observeSingleEvent(of: .value) { (snapshot) in
             let group = DispatchGroup()
             var wods = [WOD?]()
             if let values = snapshot.value as? [String : Any] {
@@ -138,7 +158,7 @@ class FirebaseDatabaseHelper: NSObject {
                 }
             }
             group.notify(queue: .global(qos: .userInitiated)) {
-                let compactWods = wods.compactMap { $0 }.sorted { $0.dateString ?? "" > $1.dateString ?? "" }
+                let compactWods = wods.compactMap { $0 }.filter { $0.videoId != nil }.sorted { $0.dateString > $1.dateString }
                 completion(.success(compactWods))
             }
         }
@@ -147,7 +167,7 @@ class FirebaseDatabaseHelper: NSObject {
     func fetchWODComments(date: Date, gymId: String, onSuccess: @escaping ([WODComment])->(), onFailure: @escaping (Error)->()) {
         var comments = [WODComment?]()
         let wodId = DateFormatter().timeString(from: date, format: .dateIdFormat)
-        wodRef.child(gymId).child(wodId).child("Comments").observeSingleEvent(of: .value) { (snapshot) in
+        wodRef.child(gymId).child(wodId).child(FirebaseKey.comments).observeSingleEvent(of: .value) { (snapshot) in
             let group = DispatchGroup()
             if let values = snapshot.value as? [String: Any]{
                 for v in values {
@@ -174,7 +194,8 @@ class FirebaseDatabaseHelper: NSObject {
             if let value = snapshot.value as? [String: Any] {
                 do {
                     let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-                    let comment = try JSONDecoder().decode(WODComment?.self, from: data)
+                    var comment = try JSONDecoder().decode(WODComment?.self, from: data)
+                    comment?.id = commentId
                     onSuccess(comment)
                 } catch {
                     print("errors decode the comment data")
@@ -216,7 +237,6 @@ class FirebaseDatabaseHelper: NSObject {
         }
         let query = postRef.queryOrdered(byChild: "userId").queryEnding(atValue: uid).queryStarting(atValue: uid)
         
-//        let query = postRef.queryEqual(toValue: uid, childKey: FirebaseKey.userId)
         query.observeSingleEvent(of: .value) { (snapshot) in
             let group = DispatchGroup()
             var posts = [Post?]()
@@ -254,19 +274,6 @@ class FirebaseDatabaseHelper: NSObject {
             }
         }
     }
-
-    // insert WOD content (Workout of the day)
-    func insertWOD(gymId: String, workout: String, date: Date, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
-        let valueDictionary = ["workout": workout]
-        let dateId = DateFormatter().dateString(from: date, format: .dateIdFormat)
-        wodRef.child(gymId).child(dateId).updateChildValues(valueDictionary) { (error, dbRef) in
-            if let error = error {
-                onFailure(error)
-            } else {
-                onSuccess()
-            }
-        }
-    }
     
     func upsert(wod: WOD, completion: @escaping (Result<(), Error>)->()) {
         guard let gymId = wod.gymId, let date = wod.date else {
@@ -293,7 +300,7 @@ class FirebaseDatabaseHelper: NSObject {
             group.leave()
         }
         group.enter()
-        wodRef.child(gymId).child(wodId).child("Comments").updateChildValues([key: "CommentId"]) { (error, _) in
+        wodRef.child(gymId).child(wodId).child(FirebaseKey.comments).updateChildValues([key: FirebaseKey.commentId]) { (error, _) in
             finalError = error == nil ? finalError : error
             group.leave()
         }
@@ -357,6 +364,59 @@ class FirebaseDatabaseHelper: NSObject {
             }
         }
 
+    }
+    
+    func fetchLikes(for comment: WODComment, completion: @escaping (Result<[String], Error>)->()) {
+        guard let id = comment.id else {
+            return
+        }
+        wodCommentRef.child(id).child(FirebaseKey.likes).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                let s = Array(value.keys)
+                completion(.success(s))
+            } else { // found nil value
+                completion(.success([]))
+            }
+        }
+    }
+    
+    func fetchLikes(for post: Post, completion: @escaping (Result<[String], Error>)->()) {
+        guard let id = post.id else {
+            return
+        }
+        postRef.child(id).child(FirebaseKey.likes).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                let s = Array(value.keys)
+                completion(.success(s))
+            } else { // found nil value
+                completion(.success([]))
+            }
+        }
+
+    }
+    
+    func likeWODComment(like: Bool, comment: WODComment) {
+        guard let id = comment.id, let uid = UserDefaults.currentUser()?.userId else {
+            return
+        }
+        if like {
+            let dict: [String: Any] = [uid: FirebaseKey.userId]
+            wodCommentRef.child(id).child(FirebaseKey.likes).updateChildValues(dict)
+        } else {
+            wodCommentRef.child(id).child(FirebaseKey.likes).child(uid).removeValue()
+        }
+    }
+    
+    func likePost(like: Bool, post: Post) {
+        guard let id = post.id, let uid = UserDefaults.currentUser()?.userId else {
+            return
+        }
+        if like {
+            let dict: [String: Any] = [uid: FirebaseKey.userId]
+            postRef.child(id).child(FirebaseKey.likes).updateChildValues(dict)
+        } else {
+            postRef.child(id).child(FirebaseKey.likes).child(uid).removeValue()
+        }
     }
     
 }

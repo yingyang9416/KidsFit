@@ -19,7 +19,16 @@ class VideoThumbnailTableViewCell: UITableViewCell {
     }
     
     func bind(wod: WOD) {
-        titleLabel.text = "wod \(wod.dateString)"
+        var title = ""
+        if let date = wod.date {
+            title = "WOD\n" + DateFormatter().dateString(from: date, format: .shortReadableDateFormat)
+        } else {
+            title = "WOD"
+        }
+        titleLabel.text = title
+        if let vid = wod.videoId {
+            videoView.load(withVideoId: vid)
+        }
     }
         
 }

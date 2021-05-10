@@ -9,18 +9,28 @@ import UIKit
 import SPAlert
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet var emailField: UITextField!
-    @IBOutlet var passwordField: UITextField!
     
+    @IBOutlet var emailView: TextfieldWithTitle!
+    @IBOutlet var passwordView: TextfieldWithTitle!
+    @IBOutlet var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dismissKeyboardWhenTappedAround()
+        emailView.type = .largeWhite
+        emailView.title = "Email"
+        passwordView.type = .largeWhite
+        passwordView.title = "Password"
+        passwordView.isPasswordView = true
+        loginButton.makeRounded()
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let email = emailField.text, let pwd = passwordField.text else {
+        guard let email = emailView.text, let pwd = passwordView.text else {
             SPAlert.present(message: "Please fill all fields", haptic: .error)
             return
         }

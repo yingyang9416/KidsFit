@@ -35,7 +35,7 @@ extension UIView {
     }
     
     func makeRounded() {
-        layer.cornerRadius = frame.size.width/2
+        layer.cornerRadius = frame.size.height/2
         clipsToBounds = true
     }
     

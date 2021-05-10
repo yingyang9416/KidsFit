@@ -15,20 +15,22 @@ class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        navigationController?.navigationBar.tintColor = .white
     }
     
     let settings: [[SettingsCellStruct]] =
-        [[SettingsCellStruct(iconImage: UIImage.profile, title: "My profile")],
+        [[SettingsCellStruct(iconImage: UIImage.profile, title: "My profile"),
+          SettingsCellStruct(iconImage: UIImage.gym, title: "My primary gym")],
          [SettingsCellStruct(iconImage: UIImage.edit, title: "Edit WOD")],
          [SettingsCellStruct(iconImage: UIImage.video, title: "Workout videos")],
          [SettingsCellStruct(iconImage: UIImage.instagram, title: "Instagram"),
           SettingsCellStruct(iconImage: UIImage.youtube, title: "Youtube")],
          [SettingsCellStruct(iconImage: UIImage.changePassword, title: "Change password"),
-          SettingsCellStruct(iconImage: UIImage.logout, title: "Logout")]]
+          SettingsCellStruct(iconImage: UIImage.logout, title: "Sign out")]]
     
     func setupTableView() {
         moreTableView.register(cell: MoreTableViewCell.self)
-        moreTableView.backgroundColor = .lightGray
+        moreTableView.backgroundColor = .systemGray6
         moreTableView.tableFooterView = UIView(frame: .zero)
     }
     
@@ -71,6 +73,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: MoreTableViewCell.self, indexPath: indexPath)
         cell.bind(setting: settings[indexPath.section][indexPath.row])
+        switch (indexPath.section, indexPath.row) {
+        case (0, 1):
+            cell.type = .primaryGym
+        case (4, 1):
+            cell.type = .signout
+        default:
+            cell.type = .regular
+        }
         return cell
     }
     
@@ -111,11 +121,11 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 3:
             switch indexPath.row {
             case 0:  // instagram
-                if let url = URL(string: "https://instagram.com/carterparkcrossfit/?igshid=v8fojqk7l6o1") {
+                if let url = URL(string: "https://instagram.com/carterparkcrossfit") {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             case 1:  // youtube
-                if let url = URL(string: "https://instagram.com/carterparkcrossfit/?igshid=v8fojqk7l6o1") {
+                if let url = URL(string: "https://youtube.com") {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             default:

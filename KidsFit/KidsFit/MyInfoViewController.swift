@@ -43,7 +43,6 @@ class MyInfoViewController: UIViewController, UIImagePickerControllerDelegate & 
         
         let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
-        navigationController?.navigationBar.tintColor = .white
     }
     
     func fetchDisplayUserInfo() {
