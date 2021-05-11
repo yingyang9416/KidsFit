@@ -9,6 +9,7 @@ import UIKit
 
 class MeViewController: UIViewController {
     
+    @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var postTableView: UITableView!
     var allPosts = [Post]()
     var noPosts: Bool {
@@ -18,7 +19,14 @@ class MeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        loadPosts {}
+        postTableView.isHidden = true
+        spinner.startAnimating()
+        loadPosts {
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.postTableView.isHidden = false
+            }
+        }
     }
     
     func setupTableView() {

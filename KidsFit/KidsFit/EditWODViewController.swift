@@ -39,6 +39,7 @@ class EditWODViewController: UIViewController {
             let isAdmin = user?.isAdmin ?? false
             self.permissionView.isHidden = isAdmin
             self.editWODView.isHidden = !isAdmin
+            saveButton.isEnabled = isAdmin
             if isAdmin {
                 self.loadWODInfo()
             }

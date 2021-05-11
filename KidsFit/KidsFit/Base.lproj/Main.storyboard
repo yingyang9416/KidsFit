@@ -205,6 +205,13 @@
                                     <outlet property="delegate" destination="3fh-E2-YQd" id="lax-wm-sxg"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="i6m-KA-1ob">
+                                <rect key="frame" x="192" y="93" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="P6y-25-sPQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="Xk7-FJ-2EO"/>
+                                </constraints>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2J7-tc-Kt4">
                                 <rect key="frame" x="330" y="729" width="64" height="64"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -225,6 +232,8 @@
                             <constraint firstItem="mnX-iR-X9u" firstAttribute="top" secondItem="ANz-4v-nnS" secondAttribute="top" id="Jl0-R1-aFC"/>
                             <constraint firstItem="mnX-iR-X9u" firstAttribute="leading" secondItem="ANz-4v-nnS" secondAttribute="leading" id="TgB-n0-lyR"/>
                             <constraint firstItem="ANz-4v-nnS" firstAttribute="bottom" secondItem="mnX-iR-X9u" secondAttribute="bottom" id="Zmb-tE-Udq"/>
+                            <constraint firstItem="i6m-KA-1ob" firstAttribute="top" secondItem="ANz-4v-nnS" secondAttribute="top" constant="5" id="idn-Ew-oOB"/>
+                            <constraint firstItem="i6m-KA-1ob" firstAttribute="centerX" secondItem="ANz-4v-nnS" secondAttribute="centerX" id="sqH-fl-pKF"/>
                             <constraint firstItem="ANz-4v-nnS" firstAttribute="bottom" secondItem="2J7-tc-Kt4" secondAttribute="bottom" constant="20" id="tmt-b3-ZcG"/>
                             <constraint firstItem="ANz-4v-nnS" firstAttribute="trailing" secondItem="2J7-tc-Kt4" secondAttribute="trailing" constant="20" id="u4w-Xn-heT"/>
                         </constraints>
@@ -233,6 +242,7 @@
                     <connections>
                         <outlet property="addButton" destination="2J7-tc-Kt4" id="fxk-ng-dba"/>
                         <outlet property="postTableView" destination="mnX-iR-X9u" id="GVd-gq-gaB"/>
+                        <outlet property="spinner" destination="i6m-KA-1ob" id="RQO-qj-7pN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fI-MM-PxA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -359,6 +369,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="X9q-HV-89f">
+                                <rect key="frame" x="192" y="93" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="F1p-BL-JfJ"/>
+                                    <constraint firstAttribute="width" constant="30" id="k2w-hO-VeK"/>
+                                </constraints>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9cd-IJ-QoA">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -372,7 +389,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3Xw-IK-u28" firstAttribute="bottom" secondItem="9cd-IJ-QoA" secondAttribute="bottom" id="EDU-nA-zpv"/>
+                            <constraint firstItem="X9q-HV-89f" firstAttribute="centerX" secondItem="3Xw-IK-u28" secondAttribute="centerX" id="EZE-D2-lUp"/>
                             <constraint firstItem="9cd-IJ-QoA" firstAttribute="leading" secondItem="3Xw-IK-u28" secondAttribute="leading" id="Ofi-FO-315"/>
+                            <constraint firstItem="X9q-HV-89f" firstAttribute="top" secondItem="3Xw-IK-u28" secondAttribute="top" constant="5" id="Pli-ST-iNs"/>
                             <constraint firstItem="9cd-IJ-QoA" firstAttribute="top" secondItem="3Xw-IK-u28" secondAttribute="top" id="b1H-ew-4ot"/>
                             <constraint firstItem="3Xw-IK-u28" firstAttribute="trailing" secondItem="9cd-IJ-QoA" secondAttribute="trailing" id="eIo-2l-Zim"/>
                         </constraints>
@@ -380,6 +399,7 @@
                     <navigationItem key="navigationItem" title="My Posts" id="sFe-3c-u03"/>
                     <connections>
                         <outlet property="postTableView" destination="9cd-IJ-QoA" id="jWv-ez-Ptr"/>
+                        <outlet property="spinner" destination="X9q-HV-89f" id="Ia8-30-fBj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luu-6Y-0vl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

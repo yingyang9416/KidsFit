@@ -12,6 +12,7 @@ class CommunityViewController: UIViewController {
 
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var spinner: UIActivityIndicatorView!
     
     let imagePicker = UIImagePickerController()
     var allPosts = [Post]()
@@ -23,7 +24,14 @@ class CommunityViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupTableView()
-        loadPosts {}
+        postTableView.isHidden = true
+        spinner.startAnimating()
+        loadPosts {
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.postTableView.isHidden = false
+            }
+        }
     }
     
     func setupViews() {
@@ -54,7 +62,7 @@ class CommunityViewController: UIViewController {
             [unowned self] in
             guard lastKey != nil else {
                 DispatchQueue.main.async {
-                    postTableView.es.stopLoadingMore()
+                    postTableView.es.noticeNoMoreData()
                 }
                 return
             }
@@ -71,10 +79,8 @@ class CommunityViewController: UIViewController {
     func loadPosts(completion: @escaping () -> ()) {
         isPaginating = true
         FirebaseDatabaseHelper.shared.fetchposts(lastKey: lastKey) { (posts) in
-//            let bound = (low: self.allPosts.count, high: self.allPosts.count + posts.count)
             self.allPosts.append(contentsOf: posts)
             self.lastKey = posts.last?.timeString
-//            let indexPaths = (bound.low..<bound.high).map { IndexPath(row: $0, section: 0) }
             DispatchQueue.main.async {
                 self.postTableView.reloadData()
             }

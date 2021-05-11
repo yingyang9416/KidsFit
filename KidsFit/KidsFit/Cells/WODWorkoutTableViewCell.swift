@@ -14,10 +14,12 @@ class WODWorkoutTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var bodyLabel: UILabel!
     @IBOutlet var playerView: YTPlayerView!
+    @IBOutlet var illustrationView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.setShadow(color: .lightGray, opacity: 0.2, radius: 8)
+        illustrationView.isHidden = true
     }
     
     func bind(wod: WOD?) {
@@ -25,9 +27,11 @@ class WODWorkoutTableViewCell: UITableViewCell {
             titleLabel.text = "No workout found"
             bodyLabel.text = ""
             playerView.isHidden = true
+            illustrationView.isHidden = false
             return
         }
         
+        illustrationView.isHidden = true
         titleLabel.text = wod.title ?? "WOD"
         bodyLabel.text = wod.workout
         if let videoId = wod.videoId {

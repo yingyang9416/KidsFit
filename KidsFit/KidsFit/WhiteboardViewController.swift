@@ -80,12 +80,15 @@ class WhiteboardViewController: UIViewController {
             loadContent(for: dateShown, gymId: currentGymId)
             self.whiteboardTableView.es.stopPullToRefresh()
         }
-        
-        // add image header
+        setTableImageHeader()
+    }
+    
+    func setTableImageHeader() {
+        let number: Int = Calendar.current.component(.day, from: dateShown) % 8
         let headerImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 300))
-        headerImageView.image = UIImage(named: "kidsfitness1")
+        headerImageView.image = UIImage(named: "kidsfitness\(number)")
+        headerImageView.contentMode = .scaleAspectFill
         whiteboardTableView.tableHeaderView = headerImageView
-
     }
         
     @objc func navTitileTapped() {
@@ -146,6 +149,7 @@ class WhiteboardViewController: UIViewController {
         FirebaseDatabaseHelper.shared.fetchWOD(date: date, gymId: currentGymId) { (wod) in
             self.wod = wod
             self.whiteboardTableView.reloadData()
+            self.setTableImageHeader()
         } onFailure: { (error) in
             SPAlert.present(message: "Error getting the content", haptic: .error)
         }
@@ -154,6 +158,7 @@ class WhiteboardViewController: UIViewController {
             self.comments = comments
             DispatchQueue.main.async {
                 self.whiteboardTableView.reloadData()
+                self.setTableImageHeader()
             }
         } onFailure: { (error) in
             DispatchQueue.main.async {
@@ -213,12 +218,11 @@ extension WhiteboardViewController: UITableViewDelegate, UITableViewDataSource {
 
     // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.lastContentOffset < scrollView.contentOffset.y { // did move up
+        if self.lastContentOffset < scrollView.contentOffset.y { // cursor move down
             commentButton.isHidden = true
-        } else if self.lastContentOffset > scrollView.contentOffset.y { // did move down
+        } else if self.lastContentOffset > scrollView.contentOffset.y { // cursor move up
             commentButton.isHidden = false
         } else { // didn't move
-            
         }
     }
 
