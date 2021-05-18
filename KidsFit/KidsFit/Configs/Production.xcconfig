@@ -1,0 +1,23 @@
+//
+//  Production.xcconfig
+//  KidsFit
+//
+//  Created by Steven Yang on 5/10/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Server URL
+ROOT_DATABASE_URL = https:/$()/kidsfit.firebaseio.com/
+ROOT_STORAGE_URL = gs:/$()/kidsfit
+
+// Keys
+//API_KEY = 89dhdyd93380dkqmoe_hd830dhq
+
+// App Settings
+APP_NAME = KidsFit
+APP_BUNDLE_ID = com.ying.KidsFit
+
+#include "Pods/Target Support Files/Pods-KidsFit/Pods-KidsFit.debug (production).xcconfig"
+#include "Pods/Target Support Files/Pods-KidsFit/Pods-KidsFit.release (production).xcconfig"

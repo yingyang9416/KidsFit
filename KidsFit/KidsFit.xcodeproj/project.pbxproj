@@ -22,6 +22,8 @@
 		7BA3214B2649860600DC4031 /* EmptyContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA321492649860600DC4031 /* EmptyContentTableViewCell.swift */; };
 		7BA3214C2649860600DC4031 /* EmptyContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA3214A2649860600DC4031 /* EmptyContentTableViewCell.xib */; };
 		7BA321512649A25F00DC4031 /* Gym.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA321502649A25F00DC4031 /* Gym.swift */; };
+		7BA32244264A429000DC4031 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA32243264A429000DC4031 /* Environment.swift */; };
+		7BA3C540264C53CB001304B8 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA3C53F264C53CB001304B8 /* ForgetPasswordViewController.swift */; };
 		7BB3DD3F25C5E92A0099CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD3E25C5E92A0099CC7E /* AppDelegate.swift */; };
 		7BB3DD4125C5E92A0099CC7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */; };
 		7BB3DD4325C5E92A0099CC7E /* WhiteboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3DD4225C5E92A0099CC7E /* WhiteboardViewController.swift */; };
@@ -107,6 +109,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		133386C9C88E7D843C196D00 /* Pods-KidsFit-KidsFitUITests.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.debug (development).xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.debug (development).xcconfig"; sourceTree = "<group>"; };
+		3F36A912D7CCE04EEA2EF0E9 /* Pods-KidsFitTests.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.debug (production).xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.debug (production).xcconfig"; sourceTree = "<group>"; };
+		486A123E11CA93908857A591 /* Pods-KidsFit.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.debug (production).xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.debug (production).xcconfig"; sourceTree = "<group>"; };
 		61D748247D6979FADDB40F67 /* Pods_KidsFitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C1625A42A79D942D3EFB5BC /* Pods-KidsFitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.debug.xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C6ED4FA9BDB5AB5C112DABF /* Pods-KidsFitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.release.xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +129,10 @@
 		7BA321492649860600DC4031 /* EmptyContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyContentTableViewCell.swift; sourceTree = "<group>"; };
 		7BA3214A2649860600DC4031 /* EmptyContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyContentTableViewCell.xib; sourceTree = "<group>"; };
 		7BA321502649A25F00DC4031 /* Gym.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym.swift; sourceTree = "<group>"; };
+		7BA3218B264A317B00DC4031 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		7BA3218C264A31AA00DC4031 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		7BA32243264A429000DC4031 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		7BA3C53F264C53CB001304B8 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		7BB3DD3B25C5E92A0099CC7E /* KidsFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB3DD3E25C5E92A0099CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,10 +184,19 @@
 		7BEE69E92647A5C300888EC9 /* WorkoutVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutVideosViewController.swift; sourceTree = "<group>"; };
 		7BEE69EE2647A6A100888EC9 /* VideoThumbnailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailTableViewCell.swift; sourceTree = "<group>"; };
 		7BEE69EF2647A6A100888EC9 /* VideoThumbnailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoThumbnailTableViewCell.xib; sourceTree = "<group>"; };
+		A5C655D5B8D8E5BF413CE060 /* Pods-KidsFit.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.debug (development).xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.debug (development).xcconfig"; sourceTree = "<group>"; };
 		A9955FBC87D509B63F610E8F /* Pods_KidsFit_KidsFitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit_KidsFitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB45A7510120F04E48198594 /* Pods_KidsFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A25612C28D34FAA7EEE772 /* Pods-KidsFit.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.release (development).xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.release (development).xcconfig"; sourceTree = "<group>"; };
+		C91083012A3608A6DF3E23F4 /* Pods-KidsFit-KidsFitUITests.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.release (production).xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.release (production).xcconfig"; sourceTree = "<group>"; };
+		CDC6BE0F9C7CE8C36054A7D9 /* Pods-KidsFit-KidsFitUITests.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.release (development).xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.release (development).xcconfig"; sourceTree = "<group>"; };
 		D564FCEE91BB775E29B6FD00 /* Pods-KidsFit-KidsFitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.debug.xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D638CF4AD8A8935165DD2CCB /* Pods-KidsFitTests.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.release (production).xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.release (production).xcconfig"; sourceTree = "<group>"; };
 		DE0CBA87EEDA3B5E497005C3 /* Pods-KidsFit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.debug.xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.debug.xcconfig"; sourceTree = "<group>"; };
+		E1C0884AEAA1867A2492EADB /* Pods-KidsFit.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.release (production).xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.release (production).xcconfig"; sourceTree = "<group>"; };
+		E7CA2DC3451CEFBE15AD70C5 /* Pods-KidsFitTests.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.release (development).xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.release (development).xcconfig"; sourceTree = "<group>"; };
+		EB57DF7B2E4F52E252672C6D /* Pods-KidsFitTests.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFitTests.debug (development).xcconfig"; path = "Target Support Files/Pods-KidsFitTests/Pods-KidsFitTests.debug (development).xcconfig"; sourceTree = "<group>"; };
+		F12608F6389F70BAC32A4713 /* Pods-KidsFit-KidsFitUITests.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.debug (production).xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.debug (production).xcconfig"; sourceTree = "<group>"; };
 		F7ED69C0E851033DEDC0F0A2 /* Pods-KidsFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit.release.xcconfig"; path = "Target Support Files/Pods-KidsFit/Pods-KidsFit.release.xcconfig"; sourceTree = "<group>"; };
 		FAF96FEFB09181A809F899C2 /* Pods-KidsFit-KidsFitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsFit-KidsFitUITests.release.xcconfig"; path = "Target Support Files/Pods-KidsFit-KidsFitUITests/Pods-KidsFit-KidsFitUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,6 +238,18 @@
 				FAF96FEFB09181A809F899C2 /* Pods-KidsFit-KidsFitUITests.release.xcconfig */,
 				6C1625A42A79D942D3EFB5BC /* Pods-KidsFitTests.debug.xcconfig */,
 				6C6ED4FA9BDB5AB5C112DABF /* Pods-KidsFitTests.release.xcconfig */,
+				486A123E11CA93908857A591 /* Pods-KidsFit.debug (production).xcconfig */,
+				A5C655D5B8D8E5BF413CE060 /* Pods-KidsFit.debug (development).xcconfig */,
+				E1C0884AEAA1867A2492EADB /* Pods-KidsFit.release (production).xcconfig */,
+				C4A25612C28D34FAA7EEE772 /* Pods-KidsFit.release (development).xcconfig */,
+				F12608F6389F70BAC32A4713 /* Pods-KidsFit-KidsFitUITests.debug (production).xcconfig */,
+				133386C9C88E7D843C196D00 /* Pods-KidsFit-KidsFitUITests.debug (development).xcconfig */,
+				C91083012A3608A6DF3E23F4 /* Pods-KidsFit-KidsFitUITests.release (production).xcconfig */,
+				CDC6BE0F9C7CE8C36054A7D9 /* Pods-KidsFit-KidsFitUITests.release (development).xcconfig */,
+				3F36A912D7CCE04EEA2EF0E9 /* Pods-KidsFitTests.debug (production).xcconfig */,
+				EB57DF7B2E4F52E252672C6D /* Pods-KidsFitTests.debug (development).xcconfig */,
+				D638CF4AD8A8935165DD2CCB /* Pods-KidsFitTests.release (production).xcconfig */,
+				E7CA2DC3451CEFBE15AD70C5 /* Pods-KidsFitTests.release (development).xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -243,6 +273,16 @@
 				7BEE69A4264754D700888EC9 /* TextfieldWithTitle.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7BA3218A264A311D00DC4031 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				7BA3218B264A317B00DC4031 /* Development.xcconfig */,
+				7BA3218C264A31AA00DC4031 /* Production.xcconfig */,
+				7BA32243264A429000DC4031 /* Environment.swift */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		7BB3DD3225C5E92A0099CC7E = {
@@ -270,6 +310,7 @@
 		7BB3DD3D25C5E92A0099CC7E /* KidsFit */ = {
 			isa = PBXGroup;
 			children = (
+				7BA3218A264A311D00DC4031 /* Configs */,
 				7BB3DD3E25C5E92A0099CC7E /* AppDelegate.swift */,
 				7BB3DE6525CE24930099CC7E /* AppError.swift */,
 				7BB3DD4025C5E92A0099CC7E /* SceneDelegate.swift */,
@@ -285,6 +326,7 @@
 				7B662572260D8821004D8CA4 /* MyInfoViewController.swift */,
 				7B662589264471DE004D8CA4 /* EditWODViewController.swift */,
 				7BEE69E92647A5C300888EC9 /* WorkoutVideosViewController.swift */,
+				7BA3C53F264C53CB001304B8 /* ForgetPasswordViewController.swift */,
 				7BB3DE3125C74C730099CC7E /* Extensions */,
 				7BB3DDDB25C6694B0099CC7E /* Services */,
 				7B6625F42645D6AD004D8CA4 /* Views */,
@@ -451,6 +493,7 @@
 				TargetAttributes = {
 					7BB3DD3A25C5E92A0099CC7E = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					7BB3DD5025C5E92C0099CC7E = {
 						CreatedOnToolsVersion = 12.4;
@@ -631,6 +674,7 @@
 				7BB3DE3E25C8A4F00099CC7E /* WODWorkoutTableViewCell.swift in Sources */,
 				7BB3DD4325C5E92A0099CC7E /* WhiteboardViewController.swift in Sources */,
 				7B66258F264486AC004D8CA4 /* FlashAlert.swift in Sources */,
+				7BA32244264A429000DC4031 /* Environment.swift in Sources */,
 				7BB3DE7425CFA1540099CC7E /* UserEntranceViewController.swift in Sources */,
 				7BA3214B2649860600DC4031 /* EmptyContentTableViewCell.swift in Sources */,
 				7BB3DD3F25C5E92A0099CC7E /* AppDelegate.swift in Sources */,
@@ -664,6 +708,7 @@
 				7BB3DE6125CBB4D50099CC7E /* CommunityViewController.swift in Sources */,
 				7BB3DE6D25CE2BE10099CC7E /* DatePickerViewController.swift in Sources */,
 				7BEE69A0264754C000888EC9 /* TextfieldWithTitle.swift in Sources */,
+				7BA3C540264C53CB001304B8 /* ForgetPasswordViewController.swift in Sources */,
 				7BB3DDC025C635470099CC7E /* SignupViewController.swift in Sources */,
 				7B662578260D8998004D8CA4 /* UIStoryboardExtension.swift in Sources */,
 				7B66256D260D72C6004D8CA4 /* MoreTableViewCell.swift in Sources */,
@@ -743,8 +788,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7BB3DD6325C5E92C0099CC7E /* Debug */ = {
+		7BA3216F264A2F3D00DC4031 /* Debug (development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218B264A317B00DC4031 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -794,7 +840,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -802,10 +848,79 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Debug (development)";
 		};
-		7BB3DD6425C5E92C0099CC7E /* Release */ = {
+		7BA32170264A2F3D00DC4031 /* Debug (development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218B264A317B00DC4031 /* Development.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug (development)";
+		};
+		7BA32171264A2F3D00DC4031 /* Debug (development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB57DF7B2E4F52E252672C6D /* Pods-KidsFitTests.debug (development).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsFit.app/KidsFit";
+			};
+			name = "Debug (development)";
+		};
+		7BA32172264A2F3D00DC4031 /* Debug (development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 133386C9C88E7D843C196D00 /* Pods-KidsFit-KidsFitUITests.debug (development).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KidsFit;
+			};
+			name = "Debug (development)";
+		};
+		7BA32177264A2FA100DC4031 /* Release (development) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218B264A317B00DC4031 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -849,7 +964,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -857,14 +972,15 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release (development)";
 		};
-		7BB3DD6625C5E92C0099CC7E /* Debug */ = {
+		7BA32178264A2FA100DC4031 /* Release (development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE0CBA87EEDA3B5E497005C3 /* Pods-KidsFit.debug.xcconfig */;
+			baseConfigurationReference = 7BA3218B264A317B00DC4031 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H7QBMXQ554;
 				INFOPLIST_FILE = KidsFit/Info.plist;
@@ -875,35 +991,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Debug;
+			name = "Release (development)";
 		};
-		7BB3DD6725C5E92C0099CC7E /* Release */ = {
+		7BA32179264A2FA100DC4031 /* Release (development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7ED69C0E851033DEDC0F0A2 /* Pods-KidsFit.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H7QBMXQ554;
-				INFOPLIST_FILE = KidsFit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		7BB3DD6925C5E92C0099CC7E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C1625A42A79D942D3EFB5BC /* Pods-KidsFitTests.debug.xcconfig */;
+			baseConfigurationReference = E7CA2DC3451CEFBE15AD70C5 /* Pods-KidsFitTests.release (development).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -922,11 +1018,197 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsFit.app/KidsFit";
 			};
-			name = Debug;
+			name = "Release (development)";
 		};
-		7BB3DD6A25C5E92C0099CC7E /* Release */ = {
+		7BA3217A264A2FA100DC4031 /* Release (development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C6ED4FA9BDB5AB5C112DABF /* Pods-KidsFitTests.release.xcconfig */;
+			baseConfigurationReference = CDC6BE0F9C7CE8C36054A7D9 /* Pods-KidsFit-KidsFitUITests.release (development).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KidsFit;
+			};
+			name = "Release (development)";
+		};
+		7BB3DD6325C5E92C0099CC7E /* Debug (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218C264A31AA00DC4031 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug (production)";
+		};
+		7BB3DD6425C5E92C0099CC7E /* Release (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218C264A31AA00DC4031 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release (production)";
+		};
+		7BB3DD6625C5E92C0099CC7E /* Debug (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218C264A31AA00DC4031 /* Production.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug (production)";
+		};
+		7BB3DD6725C5E92C0099CC7E /* Release (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3218C264A31AA00DC4031 /* Production.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Release (production)";
+		};
+		7BB3DD6925C5E92C0099CC7E /* Debug (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F36A912D7CCE04EEA2EF0E9 /* Pods-KidsFitTests.debug (production).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -945,11 +1227,34 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsFit.app/KidsFit";
 			};
-			name = Release;
+			name = "Debug (production)";
 		};
-		7BB3DD6C25C5E92C0099CC7E /* Debug */ = {
+		7BB3DD6A25C5E92C0099CC7E /* Release (production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D564FCEE91BB775E29B6FD00 /* Pods-KidsFit-KidsFitUITests.debug.xcconfig */;
+			baseConfigurationReference = D638CF4AD8A8935165DD2CCB /* Pods-KidsFitTests.release (production).xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H7QBMXQ554;
+				INFOPLIST_FILE = KidsFitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ying.KidsFitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsFit.app/KidsFit";
+			};
+			name = "Release (production)";
+		};
+		7BB3DD6C25C5E92C0099CC7E /* Debug (production) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F12608F6389F70BAC32A4713 /* Pods-KidsFit-KidsFitUITests.debug (production).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -966,11 +1271,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = KidsFit;
 			};
-			name = Debug;
+			name = "Debug (production)";
 		};
-		7BB3DD6D25C5E92C0099CC7E /* Release */ = {
+		7BB3DD6D25C5E92C0099CC7E /* Release (production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAF96FEFB09181A809F899C2 /* Pods-KidsFit-KidsFitUITests.release.xcconfig */;
+			baseConfigurationReference = C91083012A3608A6DF3E23F4 /* Pods-KidsFit-KidsFitUITests.release (production).xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -987,7 +1292,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = KidsFit;
 			};
-			name = Release;
+			name = "Release (production)";
 		};
 /* End XCBuildConfiguration section */
 
@@ -995,38 +1300,46 @@
 		7BB3DD3625C5E92A0099CC7E /* Build configuration list for PBXProject "KidsFit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BB3DD6325C5E92C0099CC7E /* Debug */,
-				7BB3DD6425C5E92C0099CC7E /* Release */,
+				7BB3DD6325C5E92C0099CC7E /* Debug (production) */,
+				7BA3216F264A2F3D00DC4031 /* Debug (development) */,
+				7BB3DD6425C5E92C0099CC7E /* Release (production) */,
+				7BA32177264A2FA100DC4031 /* Release (development) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (production)";
 		};
 		7BB3DD6525C5E92C0099CC7E /* Build configuration list for PBXNativeTarget "KidsFit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BB3DD6625C5E92C0099CC7E /* Debug */,
-				7BB3DD6725C5E92C0099CC7E /* Release */,
+				7BB3DD6625C5E92C0099CC7E /* Debug (production) */,
+				7BA32170264A2F3D00DC4031 /* Debug (development) */,
+				7BB3DD6725C5E92C0099CC7E /* Release (production) */,
+				7BA32178264A2FA100DC4031 /* Release (development) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (production)";
 		};
 		7BB3DD6825C5E92C0099CC7E /* Build configuration list for PBXNativeTarget "KidsFitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BB3DD6925C5E92C0099CC7E /* Debug */,
-				7BB3DD6A25C5E92C0099CC7E /* Release */,
+				7BB3DD6925C5E92C0099CC7E /* Debug (production) */,
+				7BA32171264A2F3D00DC4031 /* Debug (development) */,
+				7BB3DD6A25C5E92C0099CC7E /* Release (production) */,
+				7BA32179264A2FA100DC4031 /* Release (development) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (production)";
 		};
 		7BB3DD6B25C5E92C0099CC7E /* Build configuration list for PBXNativeTarget "KidsFitUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BB3DD6C25C5E92C0099CC7E /* Debug */,
-				7BB3DD6D25C5E92C0099CC7E /* Release */,
+				7BB3DD6C25C5E92C0099CC7E /* Debug (production) */,
+				7BA32172264A2F3D00DC4031 /* Debug (development) */,
+				7BB3DD6D25C5E92C0099CC7E /* Release (production) */,
+				7BA3217A264A2FA100DC4031 /* Release (development) */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release (production)";
 		};
 /* End XCConfigurationList section */
 	};

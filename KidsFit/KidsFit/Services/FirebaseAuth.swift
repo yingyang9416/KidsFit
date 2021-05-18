@@ -80,9 +80,7 @@ class FirebaseAuth: NSObject{
         }
     }
 
-    func sendPasswordReset(onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
-        guard let email = UserDefaults.currentUser()?.email else { return }
-        
+    func sendPasswordReset(email: String, onSuccess: @escaping ()->(), onFailure: @escaping (Error)->()) {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
                 onFailure(error)

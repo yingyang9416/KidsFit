@@ -46,7 +46,9 @@ class MoreViewController: UIViewController {
     }
     
     func sendPasswordReset() {
-        FirebaseAuth.shared.sendPasswordReset {
+        guard let email = UserDefaults.currentUser()?.email else { return }
+        
+        FirebaseAuth.shared.sendPasswordReset(email: email) {
             SPAlert.present(title: "A password reset link was sent to your email", preset: .done)
         } onFailure: { (error) in
             SPAlert.present(message: error.localizedDescription, haptic: .error)

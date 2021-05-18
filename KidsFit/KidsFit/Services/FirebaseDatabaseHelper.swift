@@ -13,10 +13,8 @@ class FirebaseDatabaseHelper: NSObject {
     static let shared = FirebaseDatabaseHelper()
     private override init(){}
 
-    private lazy var databaseRef = Database.database().reference()
-//    private lazy var databaseRef = Database.database(url: "https://kidsfit.firebaseio.com/").reference()
-    private lazy var storageRef = Storage.storage().reference()
-//    private lazy var storageRef = Storage.storage(url: "gs://kidsfit/").reference()
+    private lazy var databaseRef = Database.database(url: Environment.rootDatabaseURL).reference()
+    private lazy var storageRef = Storage.storage(url: Environment.rootStorageURL).reference()
     private lazy var userRef = databaseRef.child("User")
     private lazy var gymRef = databaseRef.child("Gym")
     private lazy var wodRef = databaseRef.child("WOD")

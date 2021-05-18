@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailView: TextfieldWithTitle!
     @IBOutlet var passwordView: TextfieldWithTitle!
     @IBOutlet var loginButton: UIButton!
+    @IBOutlet var forgetPasswordLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,9 @@ class LoginViewController: UIViewController {
         passwordView.type = .largeWhite
         passwordView.title = "Password"
         passwordView.isPasswordView = true
+        forgetPasswordLabel.isUserInteractionEnabled = true
+        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(forgetPasswordTapped))
+        forgetPasswordLabel.addGestureRecognizer(gesture)
         loginButton.makeRounded()
     }
     
@@ -47,4 +51,8 @@ class LoginViewController: UIViewController {
 
     }
     
+    @objc func forgetPasswordTapped() {
+        let forgetPasswordVC = UIStoryboard(storyboard: .Authentication).instantiateViewController(withIdentifier: ForgetPasswordViewController.self)
+        navigationController?.pushViewController(forgetPasswordVC, animated: true)
+    }
 }

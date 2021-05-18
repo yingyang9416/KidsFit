@@ -16,19 +16,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-5L-vZo">
-                                <rect key="frame" x="167" y="144" width="80" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kidsfit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCX-4b-EHC">
+                                <rect key="frame" x="145.5" y="344" width="123.5" height="56.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="41"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="XH3-sP-DQv">
+                                <rect key="frame" x="132" y="194" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="g83-03-V43"/>
-                                    <constraint firstAttribute="height" constant="80" id="os0-rC-5Ew"/>
+                                    <constraint firstAttribute="height" constant="150" id="ehU-O6-emf"/>
+                                    <constraint firstAttribute="width" constant="150" id="iB4-71-BMK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <constraints>
-                            <constraint firstItem="iZV-5L-vZo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="0Eq-k9-c2w"/>
-                            <constraint firstItem="iZV-5L-vZo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sfw-iz-HZ2"/>
+                            <constraint firstItem="RCX-4b-EHC" firstAttribute="top" secondItem="XH3-sP-DQv" secondAttribute="bottom" id="TWX-8f-nBv"/>
+                            <constraint firstItem="RCX-4b-EHC" firstAttribute="centerX" secondItem="XH3-sP-DQv" secondAttribute="centerX" id="fyz-mG-GLv"/>
+                            <constraint firstItem="XH3-sP-DQv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="q5y-u8-AHN"/>
+                            <constraint firstItem="XH3-sP-DQv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="rfp-Y2-Chr"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,7 +46,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="50" height="50"/>
+        <image name="appLogo" width="100" height="100"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
